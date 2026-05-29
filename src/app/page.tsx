@@ -13,6 +13,7 @@ import FAQ from '../components/FAQ';
 import FinalCTA from '../components/FinalCTA';
 import ExploreMenu from '../components/ExploreMenu';
 import Footer from '../components/Footer';
+import FloatingProgressNav from '../components/FloatingProgressNav';
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
       <FinalCTA />
       <ExploreMenu />
       <Footer />
+      <FloatingProgressNav />
     </main>
   );
 }

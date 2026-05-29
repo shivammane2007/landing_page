@@ -63,19 +63,21 @@ export default function Navbar() {
   ];
 
   return (
-    <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'pt-2 pb-1 bg-white/80 backdrop-blur-md' : 'pt-4'}`}>
-      <PillNav
-        logo={<Logo />}
-        logoAlt="Bionic Logo"
-        items={navItems}
-        activeHref={activeHref}
-        className="mx-auto"
-        ease="power2.easeOut"
-        baseColor="#EDEDED"
-        pillColor="#ffffff"
-        hoveredPillTextColor="#000000"
-        pillTextColor="#374151"
-      />
+    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[1000] w-[calc(100%-2rem)] md:w-max">
+      <div className={`mx-auto rounded-[34px] transition-all duration-300 ${scrolled ? 'backdrop-blur-md bg-[#EDEDED]/85 border border-gray-200 shadow-sm' : 'bg-transparent'}`}>
+        <PillNav
+          logo={<Logo />}
+          logoAlt="Bionic Logo"
+          items={navItems}
+          activeHref={activeHref}
+          className="mx-auto"
+          ease="power2.easeOut"
+          baseColor="#EDEDED"
+          pillColor="#ffffff"
+          hoveredPillTextColor="#000000"
+          pillTextColor="#374151"
+        />
+      </div>
     </div>
   );
 }

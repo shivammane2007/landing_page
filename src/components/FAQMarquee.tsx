@@ -55,7 +55,7 @@ export default function FAQMarquee() {
   const m3 = marqueeData.slice((marqueeData.length / 3) * 2);
 
   return (
-    <section className="relative bg-[#fafaf8] pt-20 sm:pt-32 text-gray-900 border-t border-gray-200">
+    <section id="support" className="relative bg-[#fafaf8] pt-20 sm:pt-32 text-gray-900 border-t border-gray-200">
       <div className="mx-auto max-w-full">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-center space-y-6 px-5 text-center md:px-10 mb-16">
           <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-2">Support & FAQ</p>

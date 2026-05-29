@@ -5,7 +5,7 @@ import CircularText from './CircularText';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#f0f0ee] flex flex-col justify-end">
+    <section className="relative min-h-screen pt-[100px] overflow-hidden bg-[#f0f0ee] flex flex-col justify-end">
       {/* Background Video */}
       <video
         autoPlay
