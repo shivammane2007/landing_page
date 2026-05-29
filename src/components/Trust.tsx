@@ -6,6 +6,7 @@ import { useAnimatedCounter } from '../hooks/useAnimatedCounter';
 import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
 import BorderGlow from './ui/BorderGlow';
 import LogoLoop from './ui/LogoLoop';
+import AboutUsSection from './ui/about-us-section';
 
 const StatItem = ({ target, label, suffix = '' }: { target: number, label: string, suffix?: string }) => {
   const { ref, count } = useAnimatedCounter(target, 2000);
@@ -47,7 +48,8 @@ export default function Trust() {
   }));
 
   return (
-    <section id="story" className="w-full bg-[#f7f7f5] py-24 md:py-32">
+    <>
+      <section id="story" className="w-full bg-[#f7f7f5] py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center mb-16">
@@ -121,5 +123,7 @@ export default function Trust() {
 
       </div>
     </section>
+    <AboutUsSection />
+    </>
   );
 }
