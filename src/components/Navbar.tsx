@@ -80,9 +80,9 @@ export default function Navbar() {
       }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className="sticky top-4 left-0 right-0 z-[1000] w-[calc(100%-2rem)] md:w-max mx-auto pointer-events-auto"
+      className="fixed top-4 left-0 right-0 z-[1000] w-[calc(100%-2rem)] md:w-max mx-auto pointer-events-none bg-transparent"
     >
-      <div className={`mx-auto rounded-[34px] transition-all duration-300 ${isScrolled ? 'backdrop-blur-md bg-[#EDEDED]/85 border border-gray-200 shadow-sm' : 'bg-transparent'}`}>
+      <div className={`pointer-events-auto mx-auto w-max rounded-[34px] transition-all duration-300 ${isScrolled ? 'backdrop-blur-md bg-[#EDEDED]/85 border border-gray-200 shadow-sm' : 'bg-transparent'}`}>
         <PillNav
           logo={<Logo />}
           logoAlt="Bionic Logo"

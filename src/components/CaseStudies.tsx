@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
 
 const CaseStudyCard = ({ title, story, tag, delay }: { title: string, story: string, tag: string, delay: number }) => (
   <motion.div
@@ -31,15 +32,14 @@ const CaseStudyCard = ({ title, story, tag, delay }: { title: string, story: str
       <p className="text-gray-600 mb-8 flex-grow leading-relaxed text-base">
         {story}
       </p>
-      <Link 
-        href="#" 
-        className="inline-flex items-center gap-2 text-gray-900 hover:text-blue-600 font-semibold transition-colors w-fit group/link text-sm uppercase tracking-wide"
-      >
-        Read full story
-        <span className="inline-block transition-transform duration-200 group-hover/link:translate-x-1">
-          <ArrowRight size={16} />
-        </span>
-      </Link>
+      <div className="w-fit">
+        <Link href="#" className="inline-block">
+          <AnimatedGenerateButton 
+            labelIdle="Read full story"
+            labelActive="Loading..."
+          />
+        </Link>
+      </div>
     </div>
   </motion.div>
 );

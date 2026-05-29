@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
+import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
 
 const PricingCard = ({ plan, delay }: { plan: any, delay: number }) => {
   const isHighlighted = plan.highlighted;
@@ -41,16 +42,15 @@ const PricingCard = ({ plan, delay }: { plan: any, delay: number }) => {
         ))}
       </ul>
       
-      <Link 
-        href="#" 
-        className={`mt-auto w-full inline-flex items-center justify-center gap-2 text-sm font-semibold rounded-full px-6 py-3.5 transition-all duration-200 ${
-          isHighlighted
-            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg'
-            : 'bg-gray-50 text-gray-900 hover:bg-gray-100 border border-gray-200'
-        }`}
-      >
-        {plan.cta}
-      </Link>
+      <div className="mt-auto w-full flex justify-center">
+        <Link href="#" className="w-full block">
+          <AnimatedGenerateButton 
+            labelIdle={plan.cta}
+            labelActive="Processing..."
+            className="w-full"
+          />
+        </Link>
+      </div>
     </motion.div>
   );
 };

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Tv } from 'lucide-react';
 import { useAnimatedCounter } from '../hooks/useAnimatedCounter';
+import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
 
 const StatItem = ({ target, label, suffix = '' }: { target: number, label: string, suffix?: string }) => {
   const { ref, count } = useAnimatedCounter(target, 2000);
@@ -77,10 +78,11 @@ export default function Trust() {
           viewport={{ once: true, margin: "-100px" }}
           className="flex justify-center mb-20"
         >
-          <div className="flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-700 rounded-full px-6 py-2.5 font-medium shadow-sm">
-            <Tv size={18} />
-            <span>Featured on Shark Tank India</span>
-          </div>
+          <AnimatedGenerateButton 
+            labelIdle="Featured on Shark Tank India"
+            labelActive="Loading..."
+            icon={<Tv size={16} strokeWidth={2.5} />}
+          />
         </motion.div>
 
         {/* Stats Grid */}

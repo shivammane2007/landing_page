@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
 
 export default function FinalCTA() {
   return (
@@ -25,21 +26,20 @@ export default function FinalCTA() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full sm:w-auto">
-            <Link 
-              href="#" 
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-base font-semibold text-white bg-blue-600 rounded-full px-8 py-4 hover:bg-blue-700 transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 group"
-            >
-              Book a free fitting
-              <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
-                <ArrowRight size={18} />
-              </span>
+            <Link href="#" className="w-full sm:w-auto block">
+              <AnimatedGenerateButton 
+                labelIdle="Book a free fitting"
+                labelActive="Processing..."
+                className="w-full"
+              />
             </Link>
             
-            <Link 
-              href="#" 
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-base font-semibold text-gray-900 bg-white border border-gray-300 rounded-full px-8 py-4 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 shadow-sm"
-            >
-              Contact Sales
+            <Link href="#" className="w-full sm:w-auto block">
+              <AnimatedGenerateButton 
+                labelIdle="Contact Sales"
+                labelActive="Loading..."
+                className="w-full"
+              />
             </Link>
           </div>
         </motion.div>
