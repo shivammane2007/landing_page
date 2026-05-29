@@ -8,6 +8,7 @@ import Testimonials from '../components/Testimonials';
 import Impact from '../components/Impact';
 import CaseStudies from '../components/CaseStudies';
 import Pricing from '../components/Pricing';
+import FAQMarquee from '../components/FAQMarquee';
 import FAQ from '../components/FAQ';
 import FinalCTA from '../components/FinalCTA';
 import ExploreMenu from '../components/ExploreMenu';
@@ -26,6 +27,7 @@ export default function Home() {
       <Impact />
       <CaseStudies />
       <Pricing />
+      <FAQMarquee />
       <FAQ />
       <FinalCTA />
       <ExploreMenu />

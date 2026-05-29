@@ -59,7 +59,7 @@ export default function ProductShowcase() {
             height="100%"
             cardDistance={40}
             verticalDistance={40}
-            delay={4000}
+            delay={3000}
             pauseOnHover={true}
           >
             {products.map((p) => (
