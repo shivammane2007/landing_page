@@ -1,6 +1,7 @@
 import Hero from '../components/Hero';
 import Trust from '../components/Trust';
 import ProductShowcase from '../components/ProductShowcase';
+import { Gallery4Demo } from '../components/blocks/gallery4-demo';
 import Features from '../components/Features';
 import HowItWorks from '../components/HowItWorks';
 import Technology from '../components/Technology';
@@ -21,6 +22,7 @@ export default function Home() {
       <Hero />
       <Trust />
       <ProductShowcase />
+      <Gallery4Demo />
       <Features />
       <HowItWorks />
       <Technology />

@@ -5,6 +5,7 @@ import { Tv } from 'lucide-react';
 import { useAnimatedCounter } from '../hooks/useAnimatedCounter';
 import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
 import BorderGlow from './ui/BorderGlow';
+import LogoLoop from './ui/LogoLoop';
 
 const StatItem = ({ target, label, suffix = '' }: { target: number, label: string, suffix?: string }) => {
   const { ref, count } = useAnimatedCounter(target, 2000);
@@ -40,6 +41,11 @@ export default function Trust() {
     "UCLA Health", "Penn Medicine"
   ];
 
+  const logoItems = partners.map((partner) => ({
+    node: <span className="text-xl md:text-2xl font-bold tracking-tight text-gray-400 opacity-80 hover:opacity-100 hover:text-gray-900 transition-colors duration-300 select-none whitespace-nowrap">{partner}</span>,
+    title: partner,
+  }));
+
   return (
     <section id="story" className="w-full bg-[#f7f7f5] py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,17 +71,16 @@ export default function Trust() {
         </div>
 
         {/* Logo Marquee */}
-        <div className="relative overflow-hidden mb-16 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-20 before:bg-gradient-to-r before:from-[#f7f7f5] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-20 after:bg-gradient-to-l after:from-[#f7f7f5] after:to-transparent">
-          <div className="flex animate-marquee whitespace-nowrap items-center" aria-hidden="true">
-            {[...partners, ...partners].map((partner, i) => (
-              <span 
-                key={i} 
-                className="mx-8 text-xl font-medium text-gray-400 opacity-80 hover:opacity-100 hover:text-gray-600 transition-colors duration-300 select-none grayscale"
-              >
-                {partner}
-              </span>
-            ))}
-          </div>
+        <div className="relative mb-16 overflow-hidden">
+          <LogoLoop 
+            logos={logoItems}
+            speed={60}
+            direction="left"
+            logoHeight={40}
+            gap={64}
+            fadeOut={true}
+            fadeOutColor="#f7f7f5"
+          />
         </div>
 
         {/* Shark Tank Badge */}
