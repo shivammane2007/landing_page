@@ -57,21 +57,21 @@ export default function FloatingProgressNav() {
       });
 
       if (!currentActive) {
-        // Fallback: finding nearest section if in gaps
-        let closest = SECTIONS[0].id;
-        let minDistance = Infinity;
+        // Fallback: if we are in a gap (like Case Studies), find the section immediately above the center
+        let closestAbove = SECTIONS[0].id;
+        let maxTop = -Infinity;
         SECTIONS.forEach((section) => {
            const el = document.getElementById(section.id);
            if (el) {
              const rect = el.getBoundingClientRect();
-             const distance = Math.abs(rect.top - viewportHeight / 2);
-             if (distance < minDistance) {
-                minDistance = distance;
-                closest = section.id;
+             // Find the section whose top has passed the center point, but is the highest (closest to center)
+             if (rect.top <= viewportHeight / 2 && rect.top > maxTop) {
+                maxTop = rect.top;
+                closestAbove = section.id;
              }
            }
         });
-        currentActive = closest;
+        currentActive = closestAbove;
       }
 
       // 2. Calculate Global Progress (Hero to Footer)
