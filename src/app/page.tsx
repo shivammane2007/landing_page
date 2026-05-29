@@ -10,6 +10,7 @@ import CaseStudies from '../components/CaseStudies';
 import Pricing from '../components/Pricing';
 import FAQ from '../components/FAQ';
 import FinalCTA from '../components/FinalCTA';
+import ExploreMenu from '../components/ExploreMenu';
 import Footer from '../components/Footer';
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
       <Pricing />
       <FAQ />
       <FinalCTA />
+      <ExploreMenu />
       <Footer />
     </main>
   );
