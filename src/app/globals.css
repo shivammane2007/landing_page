@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@import "tailwindcss/utilities";
+
+@layer base {
+  :root {
+    --bg-primary: #f0f0ee;
+    --bg-surface: #ffffff;
+    --text-primary: #111827; /* gray-900 */
+    --text-secondary: #374151; /* gray-700 */
+    --text-muted: #9ca3af; /* gray-400 */
+    --accent: #3b82f6; /* blue-500 */
+    --accent-hover: #2563eb; /* blue-600 */
+    --accent-light: #60a5fa; /* blue-400 */
+  }
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* Base styles to ensure consistency with Hero */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+.lenis {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
