@@ -6,7 +6,7 @@ import Link from 'next/link';
 import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
 import BorderGlow from './ui/BorderGlow';
 
-const CaseStudyCard = ({ title, story, tag, delay }: { title: string, story: string, tag: string, delay: number }) => (
+const CaseStudyCard = ({ title, story, tag, delay, image }: { title: string, story: string, tag: string, delay: number, image: string }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -20,15 +20,12 @@ const CaseStudyCard = ({ title, story, tag, delay }: { title: string, story: str
       className="group transition-all duration-300 hover:-translate-y-1 hover:shadow-md h-full"
     >
       <div className="flex flex-col h-full rounded-[24px] overflow-hidden">
-        <div className="relative h-60 md:h-72 bg-gray-100 overflow-hidden flex items-center justify-center shrink-0">
-          {/* Placeholder image */}
+        <div className="relative h-60 md:h-72 bg-gray-200 overflow-hidden flex items-center justify-center shrink-0">
+          <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 z-0" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-6 z-10 transition-transform duration-700 group-hover:scale-[1.03]">
             <div className="bg-white/90 backdrop-blur-sm text-gray-900 rounded-full px-4 py-1.5 text-xs font-bold tracking-wide uppercase shadow-sm">
               {tag}
             </div>
-          </div>
-          <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-medium tracking-widest text-sm z-0">
-            PATIENT PHOTO
           </div>
         </div>
         
@@ -58,17 +55,20 @@ export default function CaseStudies() {
     {
       title: "Arjun ran his first marathon at 32 — three years after losing his arm.",
       story: "With the Sports Edition's lightweight carbon fiber build and custom socket fit, Arjun regained his balance and running form completely, shaving 40 minutes off his initial training times. The sweat-resistant socket kept him comfortable through 26.2 miles.",
-      tag: "Sports Edition"
+      tag: "Sports Edition",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/BSK_CSOB_MARATON046_%2833791445325%29.jpg/960px-BSK_CSOB_MARATON046_%2833791445325%29.jpg"
     },
     {
       title: "Maya returned to surgery six months after her accident.",
       story: "The precision control of the Smart Hand allowed Maya to hold surgical instruments with the exact dexterity required for her profession. The haptic feedback system gave her the delicate touch needed in the operating room.",
-      tag: "Professional Use"
+      tag: "Professional Use",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Cardiac_surgery_operating_room.jpg/960px-Cardiac_surgery_operating_room.jpg"
     },
     {
       title: "At 68, Ramesh makes his own breakfast every morning.",
       story: "The Everyday Edition's intuitive adaptive learning meant Ramesh didn't need months of training. It calibrated to his baseline muscle signals within 48 hours, allowing him to seamlessly grip cups, utensils, and plates.",
-      tag: "Everyday Edition"
+      tag: "Everyday Edition",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Breakfast_at_the_Black_Bear_Diner.jpg/960px-Breakfast_at_the_Black_Bear_Diner.jpg"
     }
   ];
 
@@ -98,7 +98,7 @@ export default function CaseStudies() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {caseStudies.map((cs, i) => (
-            <CaseStudyCard key={i} title={cs.title} story={cs.story} tag={cs.tag} delay={i * 0.1} />
+            <CaseStudyCard key={i} title={cs.title} story={cs.story} tag={cs.tag} image={cs.image} delay={i * 0.1} />
           ))}
         </div>
 
