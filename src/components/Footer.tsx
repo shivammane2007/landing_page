@@ -1,92 +1,163 @@
-import Link from 'next/link';
-import { Users, MessageCircle, Image as ImageIcon, Video } from 'lucide-react';
+"use client";
+
+import Link from "next/link";
+import { ArrowUp, Mail, Send, AtSign, Globe, Share2, Heart } from "lucide-react";
+
+function handleScrollTop() {
+  window.scroll({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
+const ScrollToTop = () => {
+  return (
+    <div className="flex items-center justify-center">
+      <div className="flex items-center rounded-full border border-gray-200 bg-white shadow-sm">
+        <button type="button" onClick={handleScrollTop} className="p-2.5 hover:bg-gray-50 rounded-full transition-colors" aria-label="Scroll to top">
+          <ArrowUp className="h-4 w-4 text-gray-600" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const navigation = {
+  categories: [
+    {
+      id: "prosthetics",
+      name: "Bionic",
+      sections: [
+        {
+          id: "product",
+          name: "Product",
+          items: [
+            { name: "Smart Hand", href: "#" },
+            { name: "Smart Arm", href: "#" },
+            { name: "Sports Edition", href: "#" },
+            { name: "Pricing", href: "#pricing" },
+          ],
+        },
+        {
+          id: "company",
+          name: "Company",
+          items: [
+            { name: "About Us", href: "#" },
+            { name: "Story", href: "#" },
+            { name: "Careers", href: "#" },
+            { name: "Investors", href: "#" },
+          ],
+        },
+        {
+          id: "resources",
+          name: "Resources",
+          items: [
+            { name: "Blog", href: "#" },
+            { name: "Research", href: "#" },
+            { name: "Clinical Studies", href: "#" },
+            { name: "API", href: "#" },
+          ],
+        },
+        {
+          id: "support",
+          name: "Support",
+          items: [
+            { name: "Contact", href: "#" },
+            { name: "Consultation", href: "#" },
+            { name: "Service Centers", href: "#" },
+            { name: "Warranty", href: "#" },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+const Underline = `hover:-translate-y-1 border border-gray-200 rounded-xl p-2.5 transition-transform bg-white text-gray-500 hover:text-gray-900 shadow-sm`;
+
+const Logo = () => (
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 256 256"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill="rgb(84, 84, 84)"
+      d="M 160 88 L 194 34 L 216 0 L 256 0 L 256 40 L 221.5 93.5 L 200 128 L 256 128 L 256 256 L 96 256 L 96 168 L 64.246 220 L 40 256 L 0 256 L 0 216 L 34 162 L 56 128 L 0 128 L 0 0 L 160 0 Z"
+    />
+  </svg>
+);
 
 export default function Footer() {
-  const footerLinks = {
-    Product: [
-      { name: "Smart Hand", href: "#" },
-      { name: "Smart Arm", href: "#" },
-      { name: "Sports Edition", href: "#" },
-      { name: "Everyday Edition", href: "#" },
-      { name: "Pricing", href: "#pricing" }
-    ],
-    Company: [
-      { name: "About Us", href: "#" },
-      { name: "Story", href: "#" },
-      { name: "Careers", href: "#" },
-      { name: "Press", href: "#" },
-      { name: "Investors", href: "#" }
-    ],
-    Resources: [
-      { name: "Blog", href: "#" },
-      { name: "Research", href: "#" },
-      { name: "Clinical Studies", href: "#" },
-      { name: "Support Docs", href: "#" },
-      { name: "API", href: "#" }
-    ],
-    Support: [
-      { name: "Contact", href: "#" },
-      { name: "Book Consultation", href: "#" },
-      { name: "Service Centers", href: "#" },
-      { name: "Warranty Claims", href: "#" }
-    ],
-    Legal: [
-      { name: "Privacy Policy", href: "#" },
-      { name: "Terms of Service", href: "#" },
-      { name: "Cookie Policy", href: "#" },
-      { name: "Compliance", href: "#" }
-    ]
-  };
-
   return (
-    <footer className="w-full bg-[#f0f0ee] pt-24 pb-12 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-20">
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category} className="flex flex-col gap-6">
-              <h4 className="font-semibold text-gray-900 text-sm tracking-wide uppercase">{category}</h4>
-              <ul className="flex flex-col gap-4">
-                {links.map((link) => (
-                  <li key={link.name}>
-                    <Link 
-                      href={link.href}
-                      className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+    <footer className="border-gray-200 px-4 mx-auto w-full border-t bg-[#f0f0ee]">
+      <div className="relative mx-auto grid max-w-7xl items-center justify-center gap-6 p-10 pb-0 md:flex">
+        <Link href="/">
+          <p className="flex items-center justify-center rounded-full bg-white shadow-sm border border-gray-100 p-4 hover:scale-105 transition-transform duration-300">
+            <Logo />
+          </p>
+        </Link>
+        <p className="bg-transparent text-center text-sm leading-relaxed text-gray-500 md:text-left max-w-2xl">
+          Welcome to Bionic, where engineering meets human resilience. We don't just build hardware; we engineer extensions of the human body. Every prosthetic is crafted for comfort, pinpoint control, and uncompromising confidence. Reclaim your movement with intuitive technology designed for real life.
+        </p>
+      </div>
+
+      <div className="mx-auto max-w-7xl px-6 py-10">
+        <div className="border-b border-gray-200"> </div>
+        <div className="py-10">
+          {navigation.categories.map((category) => (
+            <div
+              key={category.name}
+              className="grid grid-cols-2 flex-row justify-between gap-8 leading-6 md:flex"
+            >
+              {category.sections.map((section) => (
+                <div key={section.name} className="flex-1">
+                  <h4 className="font-semibold text-gray-900 text-sm tracking-wide uppercase mb-4">{section.name}</h4>
+                  <ul
+                    role="list"
+                    className="flex flex-col space-y-3"
+                  >
+                    {section.items.map((item) => (
+                      <li key={item.name} className="flow-root">
+                        <Link
+                          href={item.href}
+                          className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"
+                        >
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           ))}
         </div>
+        <div className="border-b border-gray-200"> </div>
+      </div>
 
-        <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-sm font-medium text-gray-500">
-            © {new Date().getFullYear()} AI Prosthetics Inc. All rights reserved.
-          </p>
-          
-          <p className="text-sm text-gray-400">
-            Made with care for people who keep fighting.
-          </p>
-          
-          <div className="flex items-center gap-6 text-gray-400">
-            <Link href="#" className="hover:text-blue-600 transition-colors" aria-label="LinkedIn">
-              <Users size={20} />
-            </Link>
-            <Link href="#" className="hover:text-blue-600 transition-colors" aria-label="Twitter">
-              <MessageCircle size={20} />
-            </Link>
-            <Link href="#" className="hover:text-blue-600 transition-colors" aria-label="Instagram">
-              <ImageIcon size={20} />
-            </Link>
-            <Link href="#" className="hover:text-blue-600 transition-colors" aria-label="YouTube">
-              <Video size={20} />
-            </Link>
-          </div>
+      <div className="flex flex-wrap justify-center items-center gap-6 gap-y-6">
+        <div className="flex flex-wrap items-center justify-center gap-4 px-6">
+          <Link aria-label="Mail" href="#" className={Underline}><Mail strokeWidth={1.5} className="h-5 w-5" /></Link>
+          <Link aria-label="Twitter" href="#" className={Underline}><Send className="h-5 w-5" /></Link>
+          <Link aria-label="Instagram" href="#" className={Underline}><AtSign className="h-5 w-5" /></Link>
+          <Link aria-label="Facebook" href="#" className={Underline}><Share2 className="h-5 w-5" /></Link>
+          <Link aria-label="LinkedIn" href="#" className={Underline}><Globe className="h-5 w-5" /></Link>
+          <Link aria-label="YouTube" href="#" className={Underline}><Globe className="h-5 w-5" /></Link>
         </div>
+        <ScrollToTop />
+      </div>
 
+      <div className="mx-auto mb-10 mt-10 flex flex-col justify-between text-center text-xs md:max-w-7xl">
+        <div className="flex flex-row items-center justify-center gap-1 text-gray-500">
+          <span> © </span>
+          <span>{new Date().getFullYear()}</span>
+          <span>Made with</span>
+          <Heart className="text-blue-500 mx-1 h-4 w-4 animate-pulse fill-blue-500" />
+          <span> for people who keep fighting. </span>
+        </div>
       </div>
     </footer>
   );
