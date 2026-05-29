@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Menu } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import PillNav from './PillNav';
 
 const Logo = () => (
   <svg
@@ -22,7 +20,7 @@ const Logo = () => (
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState<string>('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,85 +29,53 @@ export default function Navbar() {
       } else {
         setScrolled(false);
       }
+
+      // Very simple active section detection based on hash
+      const sections = ['#story', '#products', '#features', '#technology', '#testimonials', '#pricing'];
+      let current = '';
+      for (const id of sections) {
+        const el = document.querySelector(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            current = id;
+          }
+        }
+      }
+      if (current) {
+        setActiveHref(current);
+      } else if (window.scrollY < 100) {
+        setActiveHref('/');
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Story', 'Products', 'Features', 'Technology', 'Testimonials', 'Pricing'];
+  const navItems = [
+    { label: 'Story', href: '#story' },
+    { label: 'Products', href: '#products' },
+    { label: 'Features', href: '#features' },
+    { label: 'Technology', href: '#technology' },
+    { label: 'Testimonials', href: '#testimonials' },
+    { label: 'Pricing', href: '#pricing' }
+  ];
 
   return (
-    <>
-      <nav 
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-center pt-4 sm:pt-6 px-4 sm:px-8 gap-2 sm:gap-3 transition-all duration-300 ${
-          scrolled ? 'bg-white/80 backdrop-blur-sm pb-4 sm:pb-6' : ''
-        }`}
-      >
-        <Link href="/" className="flex items-center justify-center rounded-full w-10 h-10 sm:w-11 sm:h-11 shrink-0 bg-[#EDEDED]">
-          <Logo />
-        </Link>
-        
-        <div className="hidden md:flex items-center gap-4 sm:gap-8 rounded-xl px-4 sm:px-8 py-2.5 sm:py-3 bg-[#EDEDED]">
-          {navLinks.map((item) => (
-            <Link
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-[12px] sm:text-[14px] font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200"
-            >
-              {item}
-            </Link>
-          ))}
-        </div>
-
-        <div className="flex md:hidden items-center gap-2 rounded-xl px-4 py-2.5 bg-[#EDEDED]">
-          <button 
-            onClick={() => setMobileMenuOpen(true)}
-            className="text-gray-700 hover:text-gray-900"
-            aria-label="Open mobile menu"
-          >
-            <Menu size={20} />
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Drawer */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[60] bg-[#f0f0ee] flex flex-col p-8"
-          >
-            <div className="flex justify-between items-center mb-12">
-              <div className="flex items-center justify-center rounded-full w-11 h-11 shrink-0 bg-[#EDEDED]">
-                <Logo />
-              </div>
-              <button 
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-gray-900 font-medium p-2"
-              >
-                Close
-              </button>
-            </div>
-            
-            <div className="flex flex-col gap-6 text-2xl font-semibold">
-              {navLinks.map((item) => (
-                <Link
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-gray-900"
-                >
-                  {item}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'pt-2 pb-1 bg-white/80 backdrop-blur-md' : 'pt-4'}`}>
+      <PillNav
+        logo={<Logo />}
+        logoAlt="Bionic Logo"
+        items={navItems}
+        activeHref={activeHref}
+        className="mx-auto"
+        ease="power2.easeOut"
+        baseColor="#EDEDED"
+        pillColor="#ffffff"
+        hoveredPillTextColor="#000000"
+        pillTextColor="#374151"
+      />
+    </div>
   );
 }
