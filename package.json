@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@studio-freight/lenis": "^1.0.42",
     "clsx": "^2.1.1",
     "dicons": "^1.1.7",
     "framer-motion": "^12.40.0",

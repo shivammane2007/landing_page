@@ -1,101 +1,82 @@
-"use client";
+'use client';
 
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
-import CardSwap, { Card } from './CardSwap';
+import React from 'react';
+import { cn } from '@/lib/utils';
+import Lenis from '@studio-freight/lenis';
+import { ZoomParallax } from "@/components/ui/zoom-parallax";
 
 export default function ProductShowcase() {
-  const products = [
-    { 
-      title: "Smart Hand", 
-      desc: "Intuitive grip. Natural feel.",
-      longDesc: "Engineered with 5 independent micro-motors and individual finger articulation, allowing you to seamlessly grip objects of any shape with minimal cognitive effort. Perfect for everyday tasks."
-    },
-    { 
-      title: "Smart Arm", 
-      desc: "Full-range movement. Adaptive control.",
-      longDesc: "A complete above-elbow solution. Integrated elbow flexion and wrist rotation governed by adaptive AI that anticipates your movement intentions based on shoulder posture and EMG signals."
-    },
-    { 
-      title: "Sports Edition", 
-      desc: "Built for athletes. Engineered for impact.",
-      longDesc: "Reinforced carbon-fiber chassis and a specialized dynamic shock-absorption system. IP68 waterproof rating ensures you never have to hold back during swimming, climbing, or heavy lifting."
-    },
-    { 
-      title: "Everyday Edition", 
-      desc: "Lightweight. Comfortable. Always ready.",
-      longDesc: "Our most accessible model designed for comfort over 18+ hours of continuous wear. Features breathable socket materials and a streamlined profile that fits perfectly under clothing."
-    }
-  ];
+	React.useEffect(() => {
+		const lenis = new Lenis()
 
-  return (
-    <section id="products" className="w-full bg-[#f0f0ee] py-24 md:py-32 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div className="mb-16 md:mb-20 text-center max-w-3xl mx-auto">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight"
-          >
-            Designed for real life.
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.1 }}
-            className="text-gray-500 text-lg md:text-xl leading-relaxed"
-          >
-            We don't just build hardware. We engineer extensions of the human body. Every prosthetic is crafted for comfort, pinpoint control, and uncompromising confidence.
-          </motion.p>
-        </div>
+		function raf(time: number) {
+			lenis.raf(time)
+			requestAnimationFrame(raf)
+		}
 
-        <div className="flex justify-center items-center relative w-full h-[600px] md:h-[700px]">
-          <CardSwap
-            width="100%"
-            height="100%"
-            cardDistance={40}
-            verticalDistance={40}
-            delay={3000}
-            pauseOnHover={true}
-          >
-            {products.map((p) => (
-              <Card 
-                key={p.title} 
-                style={{ maxWidth: '450px', maxHeight: '550px' }}
-                className="w-[90vw] md:w-[450px] flex flex-col overflow-hidden transition-shadow hover:shadow-xl cursor-pointer bg-white"
-              >
-                <div className="relative h-[240px] overflow-hidden bg-gray-50 flex items-center justify-center p-8 shrink-0 border-b border-gray-100">
-                  <div className="w-full h-full relative group">
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex flex-col items-center justify-center shadow-inner transition-transform duration-700 group-hover:scale-[1.03]">
-                      <span className="text-gray-400 font-medium tracking-widest uppercase text-xs mb-2">Render</span>
-                      <div className="w-24 h-24 rounded-full border-4 border-gray-100 bg-white/50 shadow-sm" />
-                    </div>
-                  </div>
-                </div>
-                <div className="p-8 md:p-10 flex flex-col flex-grow bg-white">
-                  <h3 className="font-semibold text-gray-900 text-2xl mb-2 tracking-tight">{p.title}</h3>
-                  <h4 className="text-blue-500 font-medium text-sm mb-4">{p.desc}</h4>
-                  <p className="text-gray-600 text-sm mb-8 flex-grow leading-relaxed">{p.longDesc}</p>
-                  <Link 
-                    href="#" 
-                    className="inline-flex items-center gap-1 text-gray-900 hover:text-blue-600 font-semibold text-sm transition-colors w-fit group/link"
-                  >
-                    Learn more 
-                    <span className="inline-block transition-transform duration-200 group-hover/link:translate-x-1">
-                      <ArrowRight size={16} />
-                    </span>
-                  </Link>
-                </div>
-              </Card>
-            ))}
-          </CardSwap>
-        </div>
+		requestAnimationFrame(raf)
+		
+		return () => {
+		    lenis.destroy();
+		};
+	}, [])
 
-      </div>
-    </section>
-  );
+	const images = [
+		{
+			src: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dGVjaG5vbG9neXxlbnwwfHwwfHx8MA%3D%3D',
+			alt: 'Technology Core',
+		},
+		{
+			src: 'https://plus.unsplash.com/premium_photo-1661877737564-3dfd7282efcb?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5mb3JtYXRpb24lMjB0ZWNobm9sb2d5fGVufDB8fDB8fHww',
+			alt: 'Information Technology',
+		},
+		{
+			src: 'https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=800&q=80',
+			alt: 'Robot hand reaching',
+		},
+		{
+			src: 'https://images.unsplash.com/photo-1535378273068-9bb67d5beacd?w=800&q=80',
+			alt: 'Robotic precision',
+		},
+		{
+			src: 'https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=800&q=80',
+			alt: 'Engineering workspace',
+		},
+		{
+			src: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80',
+			alt: 'Automation bot',
+		},
+		{
+			src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80',
+			alt: 'Hardware circuits',
+		},
+	];
+
+	return (
+		<section id="products" className="min-h-screen w-full bg-[#f0f0ee]">
+			<div className="relative flex h-[50vh] items-center justify-center overflow-hidden">
+				{/* Radial spotlight */}
+				<div
+					aria-hidden="true"
+					className={cn(
+						'pointer-events-none absolute -top-1/2 left-1/2 h-[120vmin] w-[120vmin] -translate-x-1/2 rounded-full',
+						'bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1),transparent_50%)]',
+						'blur-[30px]',
+					)}
+				/>
+				<div className="text-center z-10 px-4">
+					<h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+						Engineered for real life.
+					</h2>
+					<p className="text-gray-500 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+						Dive into the mechanics of our advanced prosthetics. Pinpoint control, uncompromising confidence, and seamless integration.
+					</p>
+				</div>
+			</div>
+			
+			<ZoomParallax images={images} />
+			
+			<div className="h-[20vh] bg-[#f0f0ee]"/>
+		</section>
+	);
 }
