@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import Shuffle from './Shuffle';
+import CircularText from './CircularText';
 
 export default function Hero() {
   return (
@@ -14,9 +16,38 @@ export default function Hero() {
         src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4"
       />
 
+      {/* Subtle Right-Side Typography Watermark */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 pr-6 sm:pr-12 md:pr-20 lg:pr-28 z-0 hidden md:flex items-center justify-end opacity-20 pointer-events-auto">
+        <Shuffle
+          text="BIONIC"
+          shuffleDirection="up"
+          duration={0.5}
+          animationMode="evenodd"
+          shuffleTimes={1}
+          ease="power3.out"
+          stagger={0.05}
+          threshold={0.1}
+          triggerOnce={true}
+          triggerOnHover={true}
+          respectReducedMotion={true}
+          className="text-[5rem] lg:text-[8rem] font-black text-gray-500 tracking-tighter cursor-default"
+        />
+      </div>
+
       {/* Foreground content wrapper */}
-      <div className="relative z-10 w-full pb-10 sm:pb-16 lg:pb-20 px-6 sm:px-12 md:px-20 lg:px-28">
-        <div className="max-w-xs">
+      <div className="relative z-10 w-full pb-10 sm:pb-16 lg:pb-20 px-6 sm:px-12 md:px-20 lg:px-28 pointer-events-none">
+        <div className="max-w-xs pointer-events-auto">
+          
+          {/* Circular Text Badge */}
+          <div className="mb-8 opacity-60 hover:opacity-100 transition-opacity duration-300 w-fit">
+            <CircularText
+              text="AI*SMART*PROSTHETICS*RECLAIM*MOVEMENT*"
+              onHover="speedUp"
+              spinDuration={20}
+              className="text-gray-900"
+            />
+          </div>
+
           <Link 
             href="#" 
             className="inline-flex items-center gap-1.5 text-[11.5px] font-medium text-blue-500 hover:text-blue-600 transition-colors mb-3 group"
