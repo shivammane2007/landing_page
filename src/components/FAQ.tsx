@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 import { useState } from 'react';
+import BorderGlow from './ui/BorderGlow';
 
 const FAQItem = ({ question, answer, isOpen, onClick }: { question: string, answer: string, isOpen: boolean, onClick: () => void }) => {
   return (
@@ -104,17 +105,23 @@ export default function FAQ() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="bg-white rounded-3xl p-6 md:p-12 border border-gray-200 shadow-sm"
+          className="relative"
         >
-          {faqs.map((faq, index) => (
-            <FAQItem 
-              key={index}
-              question={faq.question}
-              answer={faq.answer}
-              isOpen={openIndex === index}
-              onClick={() => setOpenIndex(openIndex === index ? null : index)}
-            />
-          ))}
+          <BorderGlow
+            backgroundColor="#ffffff"
+            borderRadius={24}
+            className="p-6 md:p-12 border border-gray-200 shadow-sm"
+          >
+            {faqs.map((faq, index) => (
+              <FAQItem 
+                key={index}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={openIndex === index}
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              />
+            ))}
+          </BorderGlow>
         </motion.div>
 
       </div>

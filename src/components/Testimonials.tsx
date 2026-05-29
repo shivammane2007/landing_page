@@ -3,9 +3,14 @@
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import React, { useRef } from 'react';
+import BorderGlow from './ui/BorderGlow';
 
 const TestimonialCard = ({ testimonial }: { testimonial: any }) => (
-  <div className="bg-white rounded-2xl p-8 border border-gray-200 transition-transform duration-300 hover:-translate-y-1 h-full flex flex-col min-w-[300px] md:min-w-0 snap-center hover:shadow-sm">
+  <BorderGlow
+    backgroundColor="#ffffff"
+    borderRadius={16}
+    className="p-8 border border-gray-200 transition-transform duration-300 hover:-translate-y-1 h-full flex flex-col min-w-[300px] md:min-w-0 snap-center hover:shadow-sm"
+  >
     <div className="flex gap-1 mb-6 text-yellow-500">
       {[...Array(5)].map((_, i) => (
         <Star key={i} size={16} fill="currentColor" />
@@ -25,7 +30,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: any }) => (
         </p>
       </div>
     </div>
-  </div>
+  </BorderGlow>
 );
 
 export default function Testimonials() {

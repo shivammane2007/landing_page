@@ -59,7 +59,7 @@ const CardSwap = ({
   const order = useRef(Array.from({ length: childArr.length }, (_, i) => i));
 
   const tlRef = useRef<any>(null);
-  const intervalRef = useRef<any>();
+  const intervalRef = useRef<any>(null);
   const container = useRef<any>(null);
 
   useEffect(() => {
@@ -201,9 +201,9 @@ const CardSwap = ({
       ? cloneElement(child as any, {
           key: i,
           ref: refs[i],
-          style: { width, height, ...(child.props.style ?? {}) },
+          style: { width, height, ...(((child as React.ReactElement<any>).props.style) ?? {}) },
           onClick: (e: any) => {
-            child.props.onClick?.(e);
+            (child as React.ReactElement<any>).props.onClick?.(e);
             onCardClick?.(i);
             setExpanded(prev => !prev);
           }

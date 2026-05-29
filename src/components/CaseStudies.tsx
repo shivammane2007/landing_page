@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
+import BorderGlow from './ui/BorderGlow';
 
 const CaseStudyCard = ({ title, story, tag, delay }: { title: string, story: string, tag: string, delay: number }) => (
   <motion.div
@@ -11,21 +12,27 @@ const CaseStudyCard = ({ title, story, tag, delay }: { title: string, story: str
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
     transition={{ delay, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-    className="group bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-md h-full"
+    className="h-full"
   >
-    <div className="relative h-60 md:h-72 bg-gray-100 overflow-hidden flex items-center justify-center">
-      {/* Placeholder image */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-6 z-10 transition-transform duration-700 group-hover:scale-[1.03]">
-        <div className="bg-white/90 backdrop-blur-sm text-gray-900 rounded-full px-4 py-1.5 text-xs font-bold tracking-wide uppercase shadow-sm">
-          {tag}
+    <BorderGlow 
+      backgroundColor="#ffffff"
+      borderRadius={24}
+      className="group transition-all duration-300 hover:-translate-y-1 hover:shadow-md h-full"
+    >
+      <div className="flex flex-col h-full rounded-[24px] overflow-hidden">
+        <div className="relative h-60 md:h-72 bg-gray-100 overflow-hidden flex items-center justify-center shrink-0">
+          {/* Placeholder image */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-6 z-10 transition-transform duration-700 group-hover:scale-[1.03]">
+            <div className="bg-white/90 backdrop-blur-sm text-gray-900 rounded-full px-4 py-1.5 text-xs font-bold tracking-wide uppercase shadow-sm">
+              {tag}
+            </div>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-medium tracking-widest text-sm z-0">
+            PATIENT PHOTO
+          </div>
         </div>
-      </div>
-      <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-medium tracking-widest text-sm z-0">
-        PATIENT PHOTO
-      </div>
-    </div>
-    
-    <div className="p-8 md:p-10 flex flex-col flex-grow">
+        
+        <div className="p-8 md:p-10 flex flex-col flex-grow">
       <h3 className="text-2xl font-bold text-gray-900 mb-4 leading-tight tracking-tight">
         {title}
       </h3>
@@ -40,7 +47,9 @@ const CaseStudyCard = ({ title, story, tag, delay }: { title: string, story: str
           />
         </Link>
       </div>
-    </div>
+      </div>
+      </div>
+    </BorderGlow>
   </motion.div>
 );
 

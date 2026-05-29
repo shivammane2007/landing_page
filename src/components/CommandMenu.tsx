@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import BorderGlow from './ui/BorderGlow';
 
 const menuItems = [
   { label: 'Story', path: '#story' },
@@ -60,8 +61,13 @@ export default function CommandMenu() {
             role="dialog"
             aria-modal="true"
             aria-label="Command Menu"
-            className="relative w-full max-w-lg bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden mx-4"
+            className="relative w-full max-w-lg mx-4"
           >
+            <BorderGlow
+              backgroundColor="#ffffff"
+              borderRadius={16}
+              className="bg-white shadow-xl border border-gray-200 overflow-hidden"
+            >
             <div className="flex items-center px-4 py-3 border-b border-gray-200">
               <Search className="text-gray-400 w-5 h-5 mr-3" />
               <input
@@ -99,6 +105,7 @@ export default function CommandMenu() {
               <span>Use arrows to navigate</span>
               <span>esc to close</span>
             </div>
+            </BorderGlow>
           </motion.div>
         </div>
       )}

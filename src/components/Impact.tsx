@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { CheckCircle2, X } from 'lucide-react';
 import { useAnimatedCounter } from '../hooks/useAnimatedCounter';
+import BorderGlow from './ui/BorderGlow';
 
 const LargeStat = ({ target, label, suffix = '', prefix = '', decimals = 0 }: { target: number, label: string, suffix?: string, prefix?: string, decimals?: number }) => {
   const { ref, count } = useAnimatedCounter(target, 2000, (val) => 
@@ -10,13 +11,19 @@ const LargeStat = ({ target, label, suffix = '', prefix = '', decimals = 0 }: { 
   );
   
   return (
-    <div ref={ref} className="text-center p-8 bg-white rounded-3xl border border-gray-200 shadow-sm transition-transform hover:-translate-y-1 duration-300">
-      <div className="text-5xl lg:text-6xl font-extrabold text-gray-900 mb-3 tracking-tighter">
-        {prefix}{count}{suffix}
-      </div>
-      <div className="text-gray-500 font-medium tracking-wide uppercase text-sm">
-        {label}
-      </div>
+    <div ref={ref} className="text-center h-full transition-transform hover:-translate-y-1 duration-300">
+      <BorderGlow
+        backgroundColor="#ffffff"
+        borderRadius={24}
+        className="p-8 border border-gray-200 shadow-sm h-full"
+      >
+        <div className="text-5xl lg:text-6xl font-extrabold text-gray-900 mb-3 tracking-tighter">
+          {prefix}{count}{suffix}
+        </div>
+        <div className="text-gray-500 font-medium tracking-wide uppercase text-sm">
+          {label}
+        </div>
+      </BorderGlow>
     </div>
   );
 };
@@ -58,38 +65,44 @@ export default function Impact() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="bg-white rounded-3xl shadow-sm border border-gray-200 p-8 md:p-12 mb-24 overflow-hidden relative"
+          className="mb-24 relative"
         >
-          {/* Vertical divider on desktop */}
-          <div className="hidden md:block absolute left-1/2 top-12 bottom-12 w-px bg-gray-200 -translate-x-1/2" />
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 relative z-10">
-            {/* Before */}
-            <div className="flex flex-col gap-8">
-              <h3 className="text-sm font-bold text-gray-400 tracking-wider uppercase mb-2">Traditional Standard</h3>
-              <ul className="flex flex-col gap-8">
-                {comparison.map((item, i) => (
-                  <li key={i} className="flex items-start gap-4">
-                    <X className="text-gray-300 shrink-0 mt-0.5" size={20} />
-                    <span className="text-base text-gray-500">{item.before}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <BorderGlow
+            backgroundColor="#ffffff"
+            borderRadius={24}
+            className="shadow-sm border border-gray-200 p-8 md:p-12 relative overflow-hidden"
+          >
+            {/* Vertical divider on desktop */}
+            <div className="hidden md:block absolute left-1/2 top-12 bottom-12 w-px bg-gray-200 -translate-x-1/2 z-0" />
             
-            {/* After */}
-            <div className="flex flex-col gap-8">
-              <h3 className="text-sm font-bold text-blue-600 tracking-wider uppercase mb-2">Smart Prosthetics</h3>
-              <ul className="flex flex-col gap-8">
-                {comparison.map((item, i) => (
-                  <li key={i} className="flex items-start gap-4">
-                    <CheckCircle2 className="text-blue-500 shrink-0 mt-0.5" size={20} />
-                    <span className="text-base font-medium text-gray-900">{item.after}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 relative z-10">
+              {/* Before */}
+              <div className="flex flex-col gap-8 bg-white/50 md:bg-transparent">
+                <h3 className="text-sm font-bold text-gray-400 tracking-wider uppercase mb-2">Traditional Standard</h3>
+                <ul className="flex flex-col gap-8">
+                  {comparison.map((item, i) => (
+                    <li key={i} className="flex items-start gap-4">
+                      <X className="text-gray-300 shrink-0 mt-0.5" size={20} />
+                      <span className="text-base text-gray-500">{item.before}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              {/* After */}
+              <div className="flex flex-col gap-8 bg-white/50 md:bg-transparent">
+                <h3 className="text-sm font-bold text-blue-600 tracking-wider uppercase mb-2">Smart Prosthetics</h3>
+                <ul className="flex flex-col gap-8">
+                  {comparison.map((item, i) => (
+                    <li key={i} className="flex items-start gap-4">
+                      <CheckCircle2 className="text-blue-500 shrink-0 mt-0.5" size={20} />
+                      <span className="text-base font-medium text-gray-900">{item.after}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
+          </BorderGlow>
         </motion.div>
 
         {/* Large Stats */}

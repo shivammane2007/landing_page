@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Brain, Hand, Smartphone, Battery, Feather, RefreshCw, Activity, ShieldCheck, Bluetooth } from 'lucide-react';
+import BorderGlow from './ui/BorderGlow';
 
 const FeatureCard = ({ icon: Icon, title, desc, delay }: { icon: any, title: string, desc: string, delay: number }) => (
   <motion.div
@@ -9,13 +10,19 @@ const FeatureCard = ({ icon: Icon, title, desc, delay }: { icon: any, title: str
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
     transition={{ delay, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-    className="bg-white rounded-2xl p-8 border border-gray-200 transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+    className="h-full"
   >
-    <div className="bg-[#f0f0ee] rounded-xl p-3 w-fit mb-6 text-gray-700">
-      <Icon size={24} />
-    </div>
-    <h3 className="text-gray-900 font-semibold text-lg mb-3 tracking-tight">{title}</h3>
-    <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
+    <BorderGlow 
+      backgroundColor="#ffffff"
+      className="p-8 h-full transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+      borderRadius={16}
+    >
+      <div className="bg-[#f0f0ee] rounded-xl p-3 w-fit mb-6 text-gray-700">
+        <Icon size={24} />
+      </div>
+      <h3 className="text-gray-900 font-semibold text-lg mb-3 tracking-tight">{title}</h3>
+      <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
+    </BorderGlow>
   </motion.div>
 );
 

@@ -145,22 +145,21 @@ export default function AnimatedGenerateButton({
         /* Letters */
         .ui-anim-letter {
           color: #ffffff88;
-          animation: ui-letter-anim 2s ease-in-out infinite;
-          transition: color var(--transition), text-shadow var(--transition), opacity var(--transition);
+          transition: color var(--transition), opacity var(--transition);
         }
-
-        @keyframes ui-letter-anim {
-          50% {
-            text-shadow: 0 0 3px #fff8;
-            color: #fff;
-          }
+        
+        .ui-anim-btn:hover .ui-anim-letter {
+          color: #ffffff;
         }
 
         /* SVG flicker */
         .ui-anim-btn-svg {
           filter: drop-shadow(0 0 2px #fff9);
-          animation: ui-flicker 2s linear infinite;
-          animation-delay: 0.5s;
+          transition: filter var(--transition), opacity var(--transition);
+        }
+        
+        .ui-anim-btn:hover .ui-anim-btn-svg {
+          filter: drop-shadow(0 0 4px #fff);
         }
 
         @keyframes ui-flicker {
@@ -199,10 +198,7 @@ export default function AnimatedGenerateButton({
         }
 
         .ui-anim-btn:focus .ui-anim-letter {
-          animation:
-            ui-focused-letter 1s ease-in-out forwards,
-            ui-letter-anim 1.2s ease-in-out infinite;
-          animation-delay: 0s, 1s;
+          animation: ui-focused-letter 1s ease-in-out forwards;
         }
 
         @keyframes ui-focused-letter {
@@ -212,9 +208,8 @@ export default function AnimatedGenerateButton({
             transform: scale(1);
           }
           50% {
-            transform: scale(2);
-            filter: blur(10px) brightness(150%)
-              drop-shadow(-36px 12px 12px var(--highlight));
+            transform: scale(1.5);
+            filter: blur(2px) brightness(150%);
           }
         }
 
@@ -225,8 +220,6 @@ export default function AnimatedGenerateButton({
 
         .ui-anim-btn:focus::after {
           opacity: 0.6;
-          -webkit-mask-image: linear-gradient(0deg, #fff, transparent);
-          mask-image: linear-gradient(0deg, #fff, transparent);
           filter: brightness(100%);
         }
 
@@ -237,16 +230,11 @@ export default function AnimatedGenerateButton({
         
         .ui-anim-btn:hover::after {
           opacity: 1;
-          -webkit-mask-image: linear-gradient(0deg, #fff, transparent);
-          mask-image: linear-gradient(0deg, #fff, transparent);
         }
         .ui-anim-btn:hover .ui-anim-btn-svg {
           fill: #fff;
           color: #fff;
-          filter:
-            drop-shadow(0 0 3px var(--highlight))
-            drop-shadow(0 -4px 6px #0009);
-          animation: none;
+          filter: drop-shadow(0 0 3px var(--highlight));
         }
 
         /* Active */

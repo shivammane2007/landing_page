@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
+import BorderGlow from './ui/BorderGlow';
 
 const PricingCard = ({ plan, delay }: { plan: any, delay: number }) => {
   const isHighlighted = plan.highlighted;
@@ -14,43 +15,53 @@ const PricingCard = ({ plan, delay }: { plan: any, delay: number }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ delay, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`relative bg-white rounded-3xl p-8 transition-transform duration-300 hover:-translate-y-2 flex flex-col h-full ${
+      className={`h-full ${
         isHighlighted 
-          ? 'border-2 border-gray-900 shadow-xl z-10 scale-[1.02] md:scale-105' 
-          : 'border border-gray-200 shadow-sm'
+          ? 'z-10 scale-[1.02] md:scale-105' 
+          : ''
       }`}
     >
-      {isHighlighted && (
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-900 text-white rounded-full px-5 py-1.5 text-xs font-bold tracking-widest uppercase">
-          Most Popular
+      <BorderGlow
+        backgroundColor="#ffffff"
+        borderRadius={24}
+        className={`relative p-8 transition-transform duration-300 hover:-translate-y-2 flex flex-col h-full ${
+          isHighlighted 
+            ? 'border-2 border-gray-900 shadow-xl' 
+            : 'border border-gray-200 shadow-sm'
+        }`}
+      >
+        {isHighlighted && (
+          <div className="absolute -top-8 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-900 text-white rounded-full px-5 py-1.5 text-xs font-bold tracking-widest uppercase whitespace-nowrap">
+            Most Popular
+          </div>
+        )}
+        
+        <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+        <p className="text-gray-500 text-sm mb-6 h-10">{plan.for}</p>
+        
+        <div className="mb-8 pb-8 border-b border-gray-100">
+          <span className="text-5xl font-extrabold text-gray-900 tracking-tight">{plan.price}</span>
         </div>
-      )}
-      
-      <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-      <p className="text-gray-500 text-sm mb-6 h-10">{plan.for}</p>
-      
-      <div className="mb-8 pb-8 border-b border-gray-100">
-        <span className="text-5xl font-extrabold text-gray-900 tracking-tight">{plan.price}</span>
-      </div>
-      
-      <ul className="flex flex-col gap-5 mb-10 flex-grow">
-        {plan.features.map((feature: string, i: number) => (
-          <li key={i} className="flex items-start gap-3 text-sm text-gray-700 leading-snug">
-            <CheckCircle2 className="text-blue-600 shrink-0 mt-0.5" size={18} />
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
-      
-      <div className="mt-auto w-full flex justify-center">
-        <Link href="#" className="w-full block">
-          <AnimatedGenerateButton 
-            labelIdle={plan.cta}
-            labelActive="Processing..."
-            className="w-full"
-          />
-        </Link>
-      </div>
+        
+        <ul className="flex flex-col gap-5 mb-10 flex-grow">
+          {plan.features.map((feature: string, i: number) => (
+            <li key={i} className="flex items-start gap-3 text-sm text-gray-700 leading-snug">
+              <CheckCircle2 className="text-blue-600 shrink-0 mt-0.5" size={18} />
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+        
+        <div className="mt-auto w-full flex justify-center">
+          <Link href="#" className="w-full block">
+            <AnimatedGenerateButton 
+              labelIdle={plan.cta}
+              labelActive="Processing..."
+              className="w-full"
+            />
+          </Link>
+        </div>
+      </BorderGlow>
     </motion.div>
   );
 };

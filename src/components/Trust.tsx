@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Tv } from 'lucide-react';
 import { useAnimatedCounter } from '../hooks/useAnimatedCounter';
 import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
+import BorderGlow from './ui/BorderGlow';
 
 const StatItem = ({ target, label, suffix = '' }: { target: number, label: string, suffix?: string }) => {
   const { ref, count } = useAnimatedCounter(target, 2000);
@@ -11,17 +12,23 @@ const StatItem = ({ target, label, suffix = '' }: { target: number, label: strin
   return (
     <motion.div 
       ref={ref}
-      className="bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center border border-gray-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm"
+      className="transition-all duration-300 hover:-translate-y-1 hover:shadow-sm h-full"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
     >
-      <div className="text-4xl font-bold text-gray-900 mb-2">
-        {count.toLocaleString()}{suffix}
-      </div>
-      <div className="text-sm font-medium text-gray-500">
-        {label}
-      </div>
+      <BorderGlow
+        backgroundColor="#ffffff"
+        borderRadius={16}
+        className="p-8 flex flex-col items-center justify-center text-center border border-gray-200 h-full"
+      >
+        <div className="text-4xl font-bold text-gray-900 mb-2">
+          {count.toLocaleString()}{suffix}
+        </div>
+        <div className="text-sm font-medium text-gray-500">
+          {label}
+        </div>
+      </BorderGlow>
     </motion.div>
   );
 };
