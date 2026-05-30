@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const SECTIONS = [
@@ -15,8 +15,11 @@ const SECTIONS = [
   { id: "faq", label: "FAQ" },
 ];
 
+const radius = 7;
+const circumference = 2 * Math.PI * radius;
+
 export default function FloatingProgressNav() {
-  const [activeSection, setActiveSection] = useState<string>("");
+  const [activeSection, setActiveSection] = useState<string>(SECTIONS[0].id);
   const [globalProgress, setGlobalProgress] = useState<number>(0);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -24,12 +27,11 @@ export default function FloatingProgressNav() {
     let rafId: number;
 
     const calculateProgress = () => {
-      const footer = document.querySelector('footer');
+      const footer = document.querySelector("footer");
       let isFooterVisible = false;
 
       if (footer) {
         const rect = footer.getBoundingClientRect();
-        // Hide if the footer has taken up more than 50px of the viewport from the bottom
         if (rect.top < window.innerHeight - 50) {
           isFooterVisible = true;
         }
@@ -42,50 +44,49 @@ export default function FloatingProgressNav() {
         setIsVisible(false);
       }
 
-      let currentActive = "";
       const viewportHeight = window.innerHeight;
+      const viewportCenter = viewportHeight / 2;
+      let currentActive = "";
 
-      // 1. Calculate Active Section (same logic)
+      // Find section that occupies viewport center
       SECTIONS.forEach((section) => {
         const el = document.getElementById(section.id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= viewportHeight / 2 && rect.bottom >= viewportHeight / 2) {
+          if (rect.top <= viewportCenter && rect.bottom >= viewportCenter) {
             currentActive = section.id;
           }
         }
       });
 
+      // Fallback: section whose top most recently crossed the center (scrolled above it)
       if (!currentActive) {
-        // Fallback: if we are in a gap (like Case Studies), find the section immediately above the center
         let closestAbove = SECTIONS[0].id;
         let maxTop = -Infinity;
         SECTIONS.forEach((section) => {
-           const el = document.getElementById(section.id);
-           if (el) {
-             const rect = el.getBoundingClientRect();
-             // Find the section whose top has passed the center point, but is the highest (closest to center)
-             if (rect.top <= viewportHeight / 2 && rect.top > maxTop) {
-                maxTop = rect.top;
-                closestAbove = section.id;
-             }
-           }
+          const el = document.getElementById(section.id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= viewportCenter && rect.top > maxTop) {
+              maxTop = rect.top;
+              closestAbove = section.id;
+            }
+          }
         });
         currentActive = closestAbove;
       }
 
-      // 2. Calculate Global Progress (Hero to Footer)
+      // Calculate Global Progress — guard against division by zero
       let p = 0;
       const firstSection = document.getElementById(SECTIONS[0].id);
 
       if (firstSection && footer) {
-        // Start when the top of the viewport reaches the first section (Hero is completely scrolled out)
         const startY = firstSection.offsetTop;
-        // End when the bottom of the viewport reaches the footer (Footer is about to enter)
         const endY = footer.offsetTop - viewportHeight;
-        
-        if (endY > startY) {
-          p = (window.scrollY - startY) / (endY - startY);
+        const totalScrollable = endY - startY;
+
+        if (totalScrollable > 0) {
+          p = (window.scrollY - startY) / totalScrollable;
           p = Math.max(0, Math.min(1, p));
         }
       }
@@ -108,28 +109,29 @@ export default function FloatingProgressNav() {
     };
   }, []);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = useCallback((id: string) => {
     const el = document.getElementById(id);
     if (el) {
       window.scrollTo({
-        top: el.offsetTop - 80, // Offset for top navbar
+        top: el.offsetTop - 80,
         behavior: "smooth",
       });
     }
-  };
+  }, []);
 
-  const activeIndex = SECTIONS.findIndex((s) => s.id === activeSection);
+  const activeIndex = useMemo(
+    () => SECTIONS.findIndex((s) => s.id === activeSection),
+    [activeSection]
+  );
   const activeSectionData = SECTIONS[activeIndex > -1 ? activeIndex : 0];
-  const progress = globalProgress;
 
-  const radius = 7;
-  const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - progress * circumference;
+  // Always provide explicit numeric initial value — prevents "animate from undefined" warning
+  const strokeDashoffset = circumference - globalProgress * circumference;
 
-  const scrollToNext = () => {
+  const scrollToNext = useCallback(() => {
     const nextIndex = activeIndex + 1 < SECTIONS.length ? activeIndex + 1 : 0;
     scrollToSection(SECTIONS[nextIndex].id);
-  };
+  }, [activeIndex, scrollToSection]);
 
   return (
     <AnimatePresence>
@@ -141,7 +143,7 @@ export default function FloatingProgressNav() {
           transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="fixed bottom-4 md:bottom-6 left-1/2 z-[1000] pointer-events-auto"
         >
-          <div 
+          <div
             onClick={scrollToNext}
             className="flex items-center gap-3 md:gap-4 bg-[#111111]/90 backdrop-blur-md border border-white/10 shadow-2xl rounded-full h-[56px] px-5 py-3 cursor-pointer group"
           >
@@ -156,6 +158,7 @@ export default function FloatingProgressNav() {
                     stroke="rgba(255,255,255,0.08)"
                     strokeWidth="2"
                   />
+                  {/* Issue 2 fix: explicit strokeDashoffset initial prevents "animate from undefined" warning */}
                   <motion.circle
                     cx="10"
                     cy="10"
@@ -164,6 +167,7 @@ export default function FloatingProgressNav() {
                     stroke="#ffffff"
                     strokeWidth="2"
                     strokeDasharray={circumference}
+                    strokeDashoffset={circumference}
                     animate={{ strokeDashoffset }}
                     transition={{ duration: 0.1, ease: "linear" }}
                     strokeLinecap="round"

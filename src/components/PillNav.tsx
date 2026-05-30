@@ -1,9 +1,29 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import Link from 'next/link';
 import { gsap } from 'gsap';
 import './PillNav.css';
+
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface PillNavProps {
+  logo?: ReactNode;
+  logoAlt?: string;
+  items: NavItem[];
+  activeHref?: string;
+  className?: string;
+  ease?: string;
+  baseColor?: string;
+  pillColor?: string;
+  hoveredPillTextColor?: string;
+  pillTextColor?: string;
+  onMobileMenuClick?: () => void;
+  initialLoadAnimation?: boolean;
+}
 
 const PillNav = ({
   logo,
@@ -18,17 +38,24 @@ const PillNav = ({
   pillTextColor,
   onMobileMenuClick,
   initialLoadAnimation = true
-}: any) => {
+}: PillNavProps) => {
   const resolvedPillTextColor = pillTextColor ?? baseColor;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const circleRefs = useRef<any[]>([]);
-  const tlRefs = useRef<any[]>([]);
-  const activeTweenRefs = useRef<any[]>([]);
+  const circleRefs = useRef<(HTMLElement | null)[]>([]);
+  const tlRefs = useRef<gsap.core.Timeline[]>([]);
+  const activeTweenRefs = useRef<(gsap.core.Tween | gsap.core.Timeline)[]>([]);
+  // These refs are passed to GSAP-animated DOM nodes of varying specific types;
+  // using any avoids unsafe casts on each ref assignment site.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const logoImgRef = useRef<any>(null);
-  const logoTweenRef = useRef<any>(null);
+  const logoTweenRef = useRef<gsap.core.Tween | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const hamburgerRef = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const mobileMenuRef = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navItemsRef = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const logoRef = useRef<any>(null);
 
   useEffect(() => {
