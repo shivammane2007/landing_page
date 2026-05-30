@@ -336,8 +336,9 @@ export default function AboutUsSection() {
         <motion.div
           className="mt-20 relative overflow-hidden bg-slate-900 border border-slate-800 p-10 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl"
           initial={{ opacity: 0, y: 30 }}
-          animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
         >
           {/* Subtle background glow */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-cyan-500/10 pointer-events-none" />
