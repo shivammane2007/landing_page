@@ -11,7 +11,7 @@ const FeatureCard = ({ icon: Icon, title, desc, delay }: { icon: any, title: str
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
     transition={{ delay, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-    className="h-full relative flex flex-col border border-red-500 rounded-2xl"
+    className="h-full relative flex flex-col border border-red-500 rounded-2xl transition-all duration-300 hover:shadow-md hover:-translate-y-1"
   >
     <DotPattern width={5} height={5} />
     <div className="absolute -left-1.5 -top-1.5 h-3 w-3 bg-red-500 text-white z-10" />
@@ -22,7 +22,7 @@ const FeatureCard = ({ icon: Icon, title, desc, delay }: { icon: any, title: str
     <div className="relative z-20 h-full w-full">
       <BorderGlow 
         backgroundColor="#ffffff"
-        className="p-8 h-full transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+        className="p-8 h-full"
         borderRadius={16}
       >
         <div className="bg-[#f0f0ee] rounded-xl p-3 w-fit mb-6 text-gray-700">
