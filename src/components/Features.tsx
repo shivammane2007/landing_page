@@ -9,7 +9,7 @@ const FeatureCard = ({ icon: Icon, title, desc, delay }: { icon: any, title: str
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-50px" }}
+    viewport={{ once: true, margin: "0px" }}
     transition={{ delay, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
     className="h-full relative flex flex-col border border-purple-600/60 shadow-[0_0_15px_rgba(147,51,234,0.15)] rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-purple-600/30 hover:-translate-y-1"
   >
@@ -56,7 +56,7 @@ export default function Features() {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "0px" }}
             className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-6"
           >
             Technology that moves with you.
@@ -64,7 +64,7 @@ export default function Features() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "0px" }}
             transition={{ delay: 0.1 }}
             className="text-gray-500 text-lg"
           >

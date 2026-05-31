@@ -337,7 +337,7 @@ export default function AboutUsSection() {
           className="mt-20 relative overflow-hidden bg-slate-900 border border-slate-800 p-10 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "0px" }}
           transition={{ duration: 0.8 }}
         >
           {/* Subtle background glow */}

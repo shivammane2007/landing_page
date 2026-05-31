@@ -6,7 +6,6 @@ import { useAnimatedCounter } from '../hooks/useAnimatedCounter';
 import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
 import BorderGlow from './ui/BorderGlow';
 import LogoLoop from './ui/LogoLoop';
-import AboutUsSection from './ui/about-us-section';
 
 const StatItem = ({ target, label, suffix = '' }: { target: number, label: string, suffix?: string }) => {
   const { ref, count } = useAnimatedCounter(target, 2000);
@@ -17,7 +16,7 @@ const StatItem = ({ target, label, suffix = '' }: { target: number, label: strin
       className="transition-all duration-300 hover:-translate-y-1 hover:shadow-sm h-full"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "0px" }}
     >
       <BorderGlow
         backgroundColor="#ffffff"
@@ -56,7 +55,7 @@ export default function Trust() {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "0px" }}
             className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight"
           >
             Trusted by thousands worldwide.
@@ -64,7 +63,7 @@ export default function Trust() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "0px" }}
             transition={{ delay: 0.1 }}
             className="text-gray-500 text-lg max-w-2xl mx-auto"
           >
@@ -89,7 +88,7 @@ export default function Trust() {
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "0px" }}
           className="flex justify-center mb-20"
         >
           <AnimatedGenerateButton 
@@ -111,7 +110,7 @@ export default function Trust() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "0px" }}
           className="flex flex-wrap justify-center gap-4"
         >
           {['ISO 13485 Certified', 'CE Marked', 'FDA Cleared'].map(cert => (
@@ -123,7 +122,6 @@ export default function Trust() {
 
       </div>
     </section>
-    <AboutUsSection />
     </>
   );
 }

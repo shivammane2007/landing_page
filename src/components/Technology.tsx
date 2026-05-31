@@ -22,7 +22,7 @@ export default function Technology() {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "0px" }}
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight leading-tight"
           >
             Intelligence at the edge.
@@ -30,7 +30,7 @@ export default function Technology() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "0px" }}
             transition={{ delay: 0.1 }}
             className="text-gray-600 text-lg max-w-2xl leading-relaxed"
           >

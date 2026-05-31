@@ -85,7 +85,7 @@ export default function FAQ() {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "0px" }}
             className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-6"
           >
             Frequently asked questions.
@@ -93,7 +93,7 @@ export default function FAQ() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "0px" }}
             transition={{ delay: 0.1 }}
             className="text-gray-500 text-lg md:text-xl"
           >
@@ -104,7 +104,7 @@ export default function FAQ() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "0px" }}
           className="relative"
         >
           <BorderGlow

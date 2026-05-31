@@ -45,7 +45,7 @@ export default function Impact() {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "0px" }}
             className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-6"
           >
             The difference confidence makes.
@@ -53,7 +53,7 @@ export default function Impact() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "0px" }}
             transition={{ delay: 0.1 }}
             className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto"
           >
@@ -65,7 +65,7 @@ export default function Impact() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "0px" }}
           className="mb-24 relative rounded-2xl border border-purple-600/60 shadow-[0_0_15px_rgba(147,51,234,0.15)] transition-all duration-300 hover:shadow-xl hover:shadow-purple-600/30 hover:-translate-y-1"
         >
           <DotPattern width={5} height={5} className="fill-purple-600/30 md:fill-purple-600/40 rounded-2xl" />
@@ -118,7 +118,7 @@ export default function Impact() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "0px" }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
         >
           <LargeStat target={50000} label="Units Deployed" suffix="+" />

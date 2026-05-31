@@ -10,7 +10,7 @@ const CaseStudyCard = ({ title, story, tag, delay, image }: { title: string, sto
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-50px" }}
+    viewport={{ once: true, margin: "0px" }}
     transition={{ delay, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
     className="h-full"
   >
@@ -80,7 +80,7 @@ export default function CaseStudies() {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "0px" }}
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight"
           >
             Real people. Real transformations.
@@ -88,7 +88,7 @@ export default function CaseStudies() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "0px" }}
             transition={{ delay: 0.1 }}
             className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto"
           >
