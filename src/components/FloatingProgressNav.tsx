@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { LiquidButton } from "./ui/liquid-glass-button";
 
 const SECTIONS = [
   { id: "story", label: "Story" },
@@ -143,9 +144,9 @@ export default function FloatingProgressNav() {
           transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="fixed bottom-4 md:bottom-6 left-1/2 z-[1000] pointer-events-auto"
         >
-          <div
+          <LiquidButton
             onClick={scrollToNext}
-            className="flex items-center gap-3 md:gap-4 bg-[#111111]/90 backdrop-blur-md border border-white/10 shadow-2xl rounded-full h-[56px] px-5 py-3 cursor-pointer group"
+            className="flex items-center gap-3 md:gap-4 !bg-[#111111]/90 backdrop-blur-md border border-white/10 shadow-2xl !rounded-full !h-[56px] !px-5 !py-3 cursor-pointer group"
           >
             <div className="flex items-center gap-2">
               <div className="relative w-5 h-5 flex items-center justify-center shrink-0">
@@ -207,7 +208,7 @@ export default function FloatingProgressNav() {
                 </motion.span>
               </AnimatePresence>
             </div>
-          </div>
+          </LiquidButton>
         </motion.div>
       )}
     </AnimatePresence>
