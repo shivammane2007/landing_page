@@ -3,6 +3,7 @@
 import { UserCheck, Activity, ShieldCheck, Heart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Marquee } from "@/components/ui/marquee";
+import DotPattern from './ui/dot-pattern-1';
 
 const marqueeData = [
   "How long does the battery last?",
@@ -75,7 +76,7 @@ export default function FAQMarquee() {
           <div className="absolute right-0 top-0 bottom-0 z-10 w-24 md:w-40 bg-gradient-to-l from-[#fafaf8] to-transparent pointer-events-none" />
 
           <div className="flex w-full flex-col">
-            <Marquee className="[--duration:45s] [--gap:1rem]" repeat={4}>
+            <Marquee className="[--duration:45s] [--gap:1rem]" repeat={4} pauseOnHover>
               {m1.map((q) => (
                 <Badge
                   className="rounded-full border-gray-200 bg-white px-4 py-2 text-gray-600 shadow-sm font-medium"
@@ -92,6 +93,7 @@ export default function FAQMarquee() {
               className="[--duration:50s] [--gap:1rem]"
               repeat={4}
               reverse
+              pauseOnHover
             >
               {m2.map((q) => (
                 <Badge
@@ -105,7 +107,7 @@ export default function FAQMarquee() {
               ))}
             </Marquee>
 
-            <Marquee className="[--duration:42s] [--gap:1rem]" repeat={4}>
+            <Marquee className="[--duration:42s] [--gap:1rem]" repeat={4} pauseOnHover>
               {m3.map((q) => (
                 <Badge
                   className="rounded-full border-gray-200 bg-white px-4 py-2 text-gray-600 shadow-sm font-medium"
@@ -120,27 +122,35 @@ export default function FAQMarquee() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 sm:grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4 bg-white">
-          {features.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <div
-                className="flex flex-col gap-5 px-6 py-12 lg:px-8 lg:py-16 hover:bg-gray-50 transition-colors"
-                key={feature.title}
-              >
-                <div className="bg-[#f0f0ee] rounded-xl p-3 w-fit text-gray-700">
-                  <Icon className="w-6 h-6" />
-                </div>
+        <div className="relative mx-4 sm:mx-8 lg:mx-12 border border-purple-600/60 shadow-[0_0_15px_rgba(147,51,234,0.15)] rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-purple-600/30 hover:-translate-y-1">
+          <DotPattern width={5} height={5} className="fill-purple-600/30 md:fill-purple-600/40 rounded-2xl" />
+          <div className="absolute -left-1.5 -top-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+          <div className="absolute -bottom-1.5 -left-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+          <div className="absolute -right-1.5 -top-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+          <div className="absolute -bottom-1.5 -right-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
 
-                <div className="flex flex-col gap-3 pt-6 lg:pt-10">
-                  <h3 className="font-semibold text-xl tracking-tight text-gray-900">
-                    {feature.title}
-                  </h3>
-                  <p className="leading-relaxed text-gray-500 text-sm">{feature.description}</p>
+          <div className="relative z-20 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4 bg-white/95 rounded-[calc(1rem-1px)] overflow-hidden">
+            {features.map((feature) => {
+              const Icon = feature.icon;
+              return (
+                <div
+                  className="flex flex-col gap-5 px-6 py-12 lg:px-8 lg:py-16 hover:bg-gray-50 transition-colors"
+                  key={feature.title}
+                >
+                  <div className="bg-[#f0f0ee] rounded-xl p-3 w-fit text-gray-700">
+                    <Icon className="w-6 h-6" />
+                  </div>
+
+                  <div className="flex flex-col gap-3 pt-6 lg:pt-10">
+                    <h3 className="font-semibold text-xl tracking-tight text-gray-900">
+                      {feature.title}
+                    </h3>
+                    <p className="leading-relaxed text-gray-500 text-sm">{feature.description}</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

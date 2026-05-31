@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, X } from 'lucide-react';
 import { useAnimatedCounter } from '../hooks/useAnimatedCounter';
 import BorderGlow from './ui/BorderGlow';
+import DotPattern from './ui/dot-pattern-1';
 
 const LargeStat = ({ target, label, suffix = '', prefix = '', decimals = 0 }: { target: number, label: string, suffix?: string, prefix?: string, decimals?: number }) => {
   const { ref, count } = useAnimatedCounter(target, 2000, (val) => 
@@ -65,13 +66,20 @@ export default function Impact() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="mb-24 relative"
+          className="mb-24 relative rounded-2xl border border-purple-600/60 shadow-[0_0_15px_rgba(147,51,234,0.15)] transition-all duration-300 hover:shadow-xl hover:shadow-purple-600/30 hover:-translate-y-1"
         >
-          <BorderGlow
-            backgroundColor="#ffffff"
-            borderRadius={24}
-            className="shadow-sm border border-gray-200 p-8 md:p-12 relative overflow-hidden"
-          >
+          <DotPattern width={5} height={5} className="fill-purple-600/30 md:fill-purple-600/40 rounded-2xl" />
+          <div className="absolute -left-1.5 -top-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+          <div className="absolute -bottom-1.5 -left-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+          <div className="absolute -right-1.5 -top-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+          <div className="absolute -bottom-1.5 -right-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+
+          <div className="relative z-20 h-full w-full rounded-[calc(1rem-1px)] overflow-hidden bg-white/95">
+            <BorderGlow
+              backgroundColor="#ffffff"
+              borderRadius={16}
+              className="p-8 md:p-12 relative overflow-hidden"
+            >
             {/* Vertical divider on desktop */}
             <div className="hidden md:block absolute left-1/2 top-12 bottom-12 w-px bg-gray-200 -translate-x-1/2 z-0" />
             
@@ -103,6 +111,7 @@ export default function Impact() {
               </div>
             </div>
           </BorderGlow>
+          </div>
         </motion.div>
 
         {/* Large Stats */}

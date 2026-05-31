@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils";
 interface MarqueeProps extends React.HTMLAttributes<HTMLDivElement> {
   repeat?: number;
   reverse?: boolean;
+  pauseOnHover?: boolean;
 }
 
-export function Marquee({ className, children, repeat = 4, reverse = false, ...props }: MarqueeProps) {
+export function Marquee({ className, children, repeat = 4, reverse = false, pauseOnHover = false, ...props }: MarqueeProps) {
   return (
     <div className={cn("group flex overflow-hidden p-2 [--gap:1rem] [gap:var(--gap)] flex-row", className)} {...props}>
       {[...Array(repeat)].map((_, i) => (
@@ -14,7 +15,8 @@ export function Marquee({ className, children, repeat = 4, reverse = false, ...p
           key={i} 
           className={cn(
             "flex shrink-0 justify-around [gap:var(--gap)] animate-marquee",
-            reverse && "[animation-direction:reverse]"
+            reverse && "[animation-direction:reverse]",
+            pauseOnHover && "group-hover:[animation-play-state:paused]"
           )}
         >
           {children}

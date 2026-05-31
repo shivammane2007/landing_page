@@ -11,13 +11,13 @@ const FeatureCard = ({ icon: Icon, title, desc, delay }: { icon: any, title: str
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
     transition={{ delay, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-    className="h-full relative flex flex-col border border-red-500 rounded-2xl transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+    className="h-full relative flex flex-col border border-purple-600/60 shadow-[0_0_15px_rgba(147,51,234,0.15)] rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-purple-600/30 hover:-translate-y-1"
   >
-    <DotPattern width={5} height={5} />
-    <div className="absolute -left-1.5 -top-1.5 h-3 w-3 bg-red-500 text-white z-10" />
-    <div className="absolute -bottom-1.5 -left-1.5 h-3 w-3 bg-red-500 text-white z-10" />
-    <div className="absolute -right-1.5 -top-1.5 h-3 w-3 bg-red-500 text-white z-10" />
-    <div className="absolute -bottom-1.5 -right-1.5 h-3 w-3 bg-red-500 text-white z-10" />
+    <DotPattern width={5} height={5} className="fill-purple-600/30 md:fill-purple-600/40" />
+    <div className="absolute -left-1.5 -top-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+    <div className="absolute -bottom-1.5 -left-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+    <div className="absolute -right-1.5 -top-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+    <div className="absolute -bottom-1.5 -right-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
     
     <div className="relative z-20 h-full w-full">
       <BorderGlow 

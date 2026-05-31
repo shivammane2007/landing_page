@@ -17,6 +17,7 @@ import {
   type MotionValue,
   type Variants,
 } from "framer-motion"
+import DotPattern from "./dot-pattern-1"
 
 // --- Helper Functions and Fallbacks ---
 const cn = (...classes: (string | boolean | undefined)[]) => {
@@ -215,11 +216,17 @@ function FeatureCard({ children, step }: { children: React.ReactNode; step: numb
   }
   return (
     <motion.div
-      className="animated-cards group relative w-full rounded-2xl"
+      className="animated-cards group relative w-full rounded-2xl border border-purple-600/60 shadow-[0_0_15px_rgba(147,51,234,0.15)] transition-all duration-300 hover:shadow-xl hover:shadow-purple-600/30 hover:-translate-y-1"
       onMouseMove={handleMouseMove}
       style={{ "--x": useMotionTemplate`${mouseX}px`, "--y": useMotionTemplate`${mouseY}px` } as WrapperStyle}
     >
-      <div className="relative w-full overflow-hidden rounded-3xl border border-gray-200 bg-white transition-colors duration-300">
+      <DotPattern width={5} height={5} className="fill-purple-600/30 md:fill-purple-600/40 rounded-2xl" />
+      <div className="absolute -left-1.5 -top-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+      <div className="absolute -bottom-1.5 -left-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+      <div className="absolute -right-1.5 -top-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+      <div className="absolute -bottom-1.5 -right-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+
+      <div className="relative z-20 w-full overflow-hidden rounded-[calc(1rem-1px)] bg-white/95 transition-colors duration-300">
         <div className="m-10 min-h-[450px] w-full">
           <AnimatePresence mode="wait">
             <motion.div
