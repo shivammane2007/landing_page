@@ -308,7 +308,7 @@ export default function ContactSalesClient() {
               className="relative z-10 w-full max-w-[340px] md:max-w-[400px] aspect-[4/5] flex items-center justify-center"
             >
               <img 
-                src="/everyday_bionic_1780052326141.png" 
+                src="/bionic_hand_closeup_1780052263731.png" 
                 alt="Premium Bionic Prosthetic" 
                 className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
               />
