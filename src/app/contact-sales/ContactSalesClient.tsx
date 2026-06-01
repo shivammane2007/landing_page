@@ -882,10 +882,10 @@ export default function ContactSalesClient() {
                 >
                   {item.label}
                 </span>
-                <motion.h2 layout="position" className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight drop-shadow-lg">
+                <motion.h2 layout="position" className="text-3xl md:text-5xl font-black !text-white mb-4 leading-tight drop-shadow-lg">
                   {item.heading}
                 </motion.h2>
-                <motion.p layout="position" className="text-sm md:text-base text-white/90 max-w-lg drop-shadow-md">
+                <motion.p layout="position" className="text-sm md:text-base !text-white/90 max-w-lg drop-shadow-md">
                   {item.sub}
                 </motion.p>
                 <motion.button
