@@ -2,9 +2,6 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '../app/globals.css'
 import Providers from '../components/Providers'
-import Navbar from '../components/Navbar'
-import ScrollProgress from '../components/ScrollProgress'
-import CommandMenu from '../components/CommandMenu'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -33,9 +30,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
-          <ScrollProgress />
-          <CommandMenu />
-          <Navbar />
           {children}
         </Providers>
       </body>

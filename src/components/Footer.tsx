@@ -63,8 +63,8 @@ const navigation = {
           id: "support",
           name: "Support",
           items: [
-            { name: "Contact", href: "#" },
-            { name: "Consultation", href: "#" },
+            { name: "Contact", href: "/contact-sales" },
+            { name: "Consultation", href: "/contact-sales" },
             { name: "Service Centers", href: "#" },
             { name: "Warranty", href: "#" },
           ],

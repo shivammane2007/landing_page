@@ -53,7 +53,7 @@ const PricingCard = ({ plan, delay }: { plan: any, delay: number }) => {
         </ul>
         
         <div className="mt-auto w-full flex justify-center">
-          <Link href="#" className="w-full block">
+          <Link href={plan.cta === "Contact Sales" ? "/contact-sales" : "#"} className="w-full block">
             <AnimatedGenerateButton 
               labelIdle={plan.cta}
               labelActive="Processing..."

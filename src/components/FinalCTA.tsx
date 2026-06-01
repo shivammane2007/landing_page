@@ -34,7 +34,7 @@ export default function FinalCTA() {
               />
             </Link>
             
-            <Link href="#" className="w-full sm:w-auto block">
+            <Link href="/contact-sales" className="w-full sm:w-auto block">
               <AnimatedGenerateButton 
                 labelIdle="Contact Sales"
                 labelActive="Loading..."
