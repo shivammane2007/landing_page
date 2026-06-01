@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowUp, Mail, Send, AtSign, Globe, Share2, Heart } from "lucide-react";
+import ButtonSocialIconDemo from "./ui/social-icon";
 
 function handleScrollTop() {
   window.scroll({
@@ -138,27 +139,13 @@ export default function Footer() {
         <div className="border-b border-gray-200"> </div>
       </div>
 
-      <div className="flex flex-wrap justify-center items-center gap-6 gap-y-6">
+      <div className="flex flex-wrap justify-center items-center gap-6 gap-y-6 mb-10">
         <div className="flex flex-wrap items-center justify-center gap-4 px-6">
-          <Link aria-label="Mail" href="#" className={Underline}><Mail strokeWidth={1.5} className="h-5 w-5" /></Link>
-          <Link aria-label="Twitter" href="#" className={Underline}><Send className="h-5 w-5" /></Link>
-          <Link aria-label="Instagram" href="#" className={Underline}><AtSign className="h-5 w-5" /></Link>
-          <Link aria-label="Facebook" href="#" className={Underline}><Share2 className="h-5 w-5" /></Link>
-          <Link aria-label="LinkedIn" href="#" className={Underline}><Globe className="h-5 w-5" /></Link>
-          <Link aria-label="YouTube" href="#" className={Underline}><Globe className="h-5 w-5" /></Link>
+          <ButtonSocialIconDemo />
         </div>
         <ScrollToTop />
       </div>
 
-      <div className="mx-auto mb-10 mt-10 flex flex-col justify-between text-center text-xs md:max-w-7xl">
-        <div className="flex flex-row items-center justify-center gap-1 text-gray-500">
-          <span> © </span>
-          <span>{new Date().getFullYear()}</span>
-          <span>Made with</span>
-          <Heart className="text-blue-500 mx-1 h-4 w-4 animate-pulse fill-blue-500" />
-          <span> for people who keep fighting. </span>
-        </div>
-      </div>
     </footer>
   );
 }

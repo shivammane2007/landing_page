@@ -122,12 +122,12 @@ export default function FAQMarquee() {
           </div>
         </div>
 
-        <div className="relative mx-4 sm:mx-8 lg:mx-12 border border-purple-600/60 shadow-[0_0_15px_rgba(147,51,234,0.15)] rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-purple-600/30 hover:-translate-y-1">
-          <DotPattern width={5} height={5} className="fill-purple-600/30 md:fill-purple-600/40 rounded-2xl" />
-          <div className="absolute -left-1.5 -top-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
-          <div className="absolute -bottom-1.5 -left-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
-          <div className="absolute -right-1.5 -top-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
-          <div className="absolute -bottom-1.5 -right-1.5 h-3 w-3 bg-purple-600 shadow-[0_0_10px_theme(colors.purple.600)] z-10" />
+        <div className="relative mx-4 sm:mx-8 lg:mx-12 border border-gray-200 shadow-sm rounded-2xl transition-all duration-300 hover:shadow-md hover:-translate-y-1 bg-[#fafaf8]">
+          <DotPattern width={5} height={5} className="fill-gray-200 md:fill-gray-200 rounded-2xl" />
+          <div className="absolute -left-1.5 -top-1.5 h-3 w-3 bg-gray-300 z-10" />
+          <div className="absolute -bottom-1.5 -left-1.5 h-3 w-3 bg-gray-300 z-10" />
+          <div className="absolute -right-1.5 -top-1.5 h-3 w-3 bg-gray-300 z-10" />
+          <div className="absolute -bottom-1.5 -right-1.5 h-3 w-3 bg-gray-300 z-10" />
 
           <div className="relative z-20 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4 bg-white/95 rounded-[calc(1rem-1px)] overflow-hidden">
             {features.map((feature) => {
