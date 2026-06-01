@@ -31,6 +31,7 @@ import { cn } from '@/lib/utils';
 import AnimatedGenerateButton from '@/components/ui/animated-generate-button-shadcn-tailwind';
 import { Calendar } from '@/components/ui/calendar-rac';
 import StatsClay from '@/src/components/ContentBlocks/StatsSections/tsx/StatsClay';
+import { ComboBox, Input as ComboInput, ListBox } from '@/components/ui/heroui-combo-box';
 
 // Specialist Profiles
 const specialists = [
@@ -267,7 +268,7 @@ export default function ContactSalesClient() {
           href="/" 
           className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300/40 bg-white/40 backdrop-blur-sm text-gray-600 hover:text-gray-900 transition-all hover:bg-white hover:border-gray-300 hover:shadow-sm"
         >
-          <ArrowLeft size={16} className="transition-transform duration-200 group-hover:-translate-x-0.5" />
+          <ArrowLeft size={16} className="transition-transform duration-200 group-hover:-translate-x-0.5 shrink-0" />
           <span className="text-xs font-semibold uppercase tracking-wider">Back to Home</span>
         </Link>
         <div className="flex items-center gap-2">
@@ -282,7 +283,7 @@ export default function ContactSalesClient() {
           
           <div className="lg:col-span-7 flex flex-col items-start text-left">
             <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-600 px-3 py-1 rounded-full text-xs font-semibold mb-6">
-              <Activity size={12} />
+              <Activity size={12} className="shrink-0" />
               <span>Personalized Assessment & Consultation</span>
             </div>
             
@@ -321,11 +322,11 @@ export default function ContactSalesClient() {
       {/* QUESTIONNAIRE CARD SECTION */}
       <section ref={formRef} className="px-4 sm:px-6 lg:px-8 py-8 relative z-20">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-[32px] border border-gray-200/60 shadow-2xl overflow-hidden relative">
+          <div className="bg-white rounded-[32px] border border-gray-200/60 shadow-2xl relative">
             
             {/* PROGRESS BAR */}
             {submitStatus !== 'success' && (
-              <div className="h-1.5 w-full bg-gray-100 relative">
+              <div className="h-1.5 w-full bg-gray-100 relative rounded-t-[32px] overflow-hidden">
                 <div 
                   className="h-full bg-purple-600 transition-all duration-500 ease-out" 
                   style={{ width: `${(step / 4) * 100}%` }}
@@ -339,28 +340,28 @@ export default function ContactSalesClient() {
                 {/* STEP INDICATORS */}
                 <div className="flex items-center justify-between mb-10 text-xs font-semibold text-gray-400 tracking-wider">
                   <div className={`flex items-center gap-2 ${step >= 1 ? 'text-gray-900 font-bold' : ''}`}>
-                    <span className={`h-5 w-5 rounded-full flex items-center justify-center border ${step > 1 ? 'bg-purple-600 border-purple-600 text-white' : step === 1 ? 'border-gray-900 text-gray-900' : 'border-gray-200'}`}>
+                    <span className={`h-5 w-5 shrink-0 rounded-full flex items-center justify-center border ${step > 1 ? 'bg-purple-600 border-purple-600 text-white' : step === 1 ? 'border-gray-900 text-gray-900' : 'border-gray-200'}`}>
                       {step > 1 ? <Check size={10} /> : '1'}
                     </span>
                     <span>PROFILE</span>
                   </div>
                   <div className="h-px bg-gray-200 flex-1 mx-4" />
                   <div className={`flex items-center gap-2 ${step >= 2 ? 'text-gray-900 font-bold' : ''}`}>
-                    <span className={`h-5 w-5 rounded-full flex items-center justify-center border ${step > 2 ? 'bg-purple-600 border-purple-600 text-white' : step === 2 ? 'border-gray-900 text-gray-900' : 'border-gray-200'}`}>
+                    <span className={`h-5 w-5 shrink-0 rounded-full flex items-center justify-center border ${step > 2 ? 'bg-purple-600 border-purple-600 text-white' : step === 2 ? 'border-gray-900 text-gray-900' : 'border-gray-200'}`}>
                       {step > 2 ? <Check size={10} /> : '2'}
                     </span>
                     <span>SOLUTION</span>
                   </div>
                   <div className="h-px bg-gray-200 flex-1 mx-4" />
                   <div className={`flex items-center gap-2 ${step >= 3 ? 'text-gray-900 font-bold' : ''}`}>
-                    <span className={`h-5 w-5 rounded-full flex items-center justify-center border ${step > 3 ? 'bg-purple-600 border-purple-600 text-white' : step === 3 ? 'border-gray-900 text-gray-900' : 'border-gray-200'}`}>
+                    <span className={`h-5 w-5 shrink-0 rounded-full flex items-center justify-center border ${step > 3 ? 'bg-purple-600 border-purple-600 text-white' : step === 3 ? 'border-gray-900 text-gray-900' : 'border-gray-200'}`}>
                       {step > 3 ? <Check size={10} /> : '3'}
                     </span>
                     <span>TIMELINE</span>
                   </div>
                   <div className="h-px bg-gray-200 flex-1 mx-4" />
                   <div className={`flex items-center gap-2 ${step >= 4 ? 'text-gray-900 font-bold' : ''}`}>
-                    <span className={`h-5 w-5 rounded-full flex items-center justify-center border ${step === 4 ? 'border-gray-900 text-gray-900' : 'border-gray-200'}`}>
+                    <span className={`h-5 w-5 shrink-0 rounded-full flex items-center justify-center border ${step === 4 ? 'border-gray-900 text-gray-900' : 'border-gray-200'}`}>
                       4
                     </span>
                     <span>SCHEDULE</span>
@@ -504,32 +505,82 @@ export default function ContactSalesClient() {
 
                         {/* Situation Select */}
                         <div className="relative">
-                          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-gray-400">
-                            <Building size={16} />
-                          </div>
-                          <select
+                          <ComboBox 
                             name="situation"
-                            id="situation"
-                            value={formData.situation}
-                            onChange={handleInputChange}
-                            className="w-full pl-12 pr-4 pt-6 pb-2 rounded-2xl border border-gray-200 text-sm text-gray-900 bg-white focus:outline-none focus:ring-4 focus:ring-purple-600/10 focus:border-purple-600 transition-all appearance-none cursor-pointer"
+                            className="w-full"
+                            selectedKey={formData.situation}
+                            onSelectionChange={(key) => {
+                              if (key) {
+                                setFormData(prev => ({ ...prev, situation: String(key) }));
+                              }
+                            }}
                           >
-                            <option value="Personal Use">Personal Use</option>
-                            <option value="Hospital">Hospital</option>
-                            <option value="Clinic">Clinic</option>
-                            <option value="Rehabilitation Center">Rehabilitation Center</option>
-                            <option value="Research">Research</option>
-                            <option value="Enterprise">Enterprise</option>
-                          </select>
-                          <label 
-                            htmlFor="situation" 
-                            className="absolute left-12 top-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider select-none pointer-events-none"
-                          >
-                            Current Situation
-                          </label>
-                          <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400 text-xs">
-                            ▼
-                          </div>
+                            <ComboBox.InputGroup className="relative w-full">
+                              <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-gray-400 z-10">
+                                <Building size={16} />
+                              </div>
+                              <ComboInput 
+                                placeholder="Current Situation"
+                                className="!w-full !pl-12 !pr-10 !pt-6 !pb-2 !rounded-2xl !border !text-sm !text-gray-900 !bg-white !placeholder-transparent !focus:outline-none !focus:ring-4 !focus:ring-purple-600/10 !focus:border-purple-600 !transition-all !border-gray-200"
+                              />
+                              <label 
+                                className="absolute left-12 top-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider select-none pointer-events-none z-10"
+                              >
+                                Current Situation
+                              </label>
+                              <ComboBox.Trigger className="absolute inset-y-0 right-4 flex items-center text-gray-400 text-xs">
+                                <span className="text-[10px]">▼</span>
+                              </ComboBox.Trigger>
+                            </ComboBox.InputGroup>
+                            <ComboBox.Popover className="!absolute !z-50 !top-[calc(100%+.25rem)] !inset-inline-start-0 !w-full !min-w-[100%] !overflow-y-auto !overscroll-behavior-contain !border !border-gray-200/80 !bg-white !text-gray-900 !p-1.5 !rounded-2xl !max-h-[260px] !shadow-2xl">
+                              <ListBox className="!p-1 !gap-1">
+                                <ListBox.Item id="Personal Use" textValue="Personal Use" className="!rounded-xl !p-3">
+                                  Personal Use
+                                  <ListBox.ItemIndicator />
+                                </ListBox.Item>
+                                <ListBox.Item id="Hospital" textValue="Hospital" className="!rounded-xl !p-3">
+                                  Hospital
+                                  <ListBox.ItemIndicator />
+                                </ListBox.Item>
+                                <ListBox.Item id="Clinic" textValue="Clinic" className="!rounded-xl !p-3">
+                                  Clinic
+                                  <ListBox.ItemIndicator />
+                                </ListBox.Item>
+                                <ListBox.Item id="Rehabilitation Center" textValue="Rehabilitation Center" className="!rounded-xl !p-3">
+                                  Rehabilitation Center
+                                  <ListBox.ItemIndicator />
+                                </ListBox.Item>
+                                <ListBox.Item id="Research" textValue="Research" className="!rounded-xl !p-3">
+                                  Research
+                                  <ListBox.ItemIndicator />
+                                </ListBox.Item>
+                                <ListBox.Item id="Enterprise" textValue="Enterprise" className="!rounded-xl !p-3">
+                                  Enterprise
+                                  <ListBox.ItemIndicator />
+                                </ListBox.Item>
+                                <ListBox.Item id="Non-Profit Organization" textValue="Non-Profit Organization" className="!rounded-xl !p-3">
+                                  Non-Profit Organization
+                                  <ListBox.ItemIndicator />
+                                </ListBox.Item>
+                                <ListBox.Item id="Government Agency" textValue="Government Agency" className="!rounded-xl !p-3">
+                                  Government Agency
+                                  <ListBox.ItemIndicator />
+                                </ListBox.Item>
+                                <ListBox.Item id="Educational Institution" textValue="Educational Institution" className="!rounded-xl !p-3">
+                                  Educational Institution
+                                  <ListBox.ItemIndicator />
+                                </ListBox.Item>
+                                <ListBox.Item id="Independent Practitioner" textValue="Independent Practitioner" className="!rounded-xl !p-3">
+                                  Independent Practitioner
+                                  <ListBox.ItemIndicator />
+                                </ListBox.Item>
+                                <ListBox.Item id="Other" textValue="Other" className="!rounded-xl !p-3">
+                                  Other
+                                  <ListBox.ItemIndicator />
+                                </ListBox.Item>
+                              </ListBox>
+                            </ComboBox.Popover>
+                          </ComboBox>
                         </div>
 
                       </div>
@@ -564,9 +615,9 @@ export default function ContactSalesClient() {
                             onClick={() => handleSelectOption('solution', opt.title)}
                             className={`p-6 text-left rounded-2xl border-2 transition-all flex flex-col justify-between h-40 ${formData.solution === opt.title ? 'border-purple-600 bg-purple-50/20 shadow-md ring-4 ring-purple-600/5' : 'border-gray-100 hover:border-gray-200 hover:bg-gray-50/50'}`}
                           >
-                            <div className="flex justify-between items-start w-full">
+                            <div className="flex justify-between items-start w-full gap-3">
                               <span className="text-base font-bold text-gray-900">{opt.title}</span>
-                              <div className={`h-5 w-5 rounded-full flex items-center justify-center border transition-all ${formData.solution === opt.title ? 'bg-purple-600 border-purple-600 text-white' : 'border-gray-200'}`}>
+                              <div className={`h-5 w-5 shrink-0 rounded-full flex items-center justify-center border transition-all ${formData.solution === opt.title ? 'bg-purple-600 border-purple-600 text-white' : 'border-gray-200'}`}>
                                 {formData.solution === opt.title && <Check size={10} />}
                               </div>
                             </div>
@@ -660,7 +711,7 @@ export default function ContactSalesClient() {
                                   className={`w-full p-3 rounded-xl border text-left transition-all flex items-center justify-between text-xs ${isSelected ? 'border-purple-600 bg-purple-50/20 font-bold ring-2 ring-purple-600/5' : 'border-gray-100 hover:border-gray-200 bg-white hover:bg-gray-50'}`}
                                 >
                                   <div className="flex items-center gap-3">
-                                    <Clock size={12} className="text-gray-400" />
+                                    <Clock size={12} className="text-gray-400 shrink-0" />
                                     <span>{slot.dayName}, {slot.dateStr}</span>
                                   </div>
                                   <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold ${isSelected ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-700'}`}>{slot.time}</span>
@@ -685,7 +736,7 @@ export default function ContactSalesClient() {
                       onClick={handlePrevStep}
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-gray-900 transition-colors uppercase tracking-wider px-4 py-2"
                     >
-                      <ChevronLeft size={16} />
+                      <ChevronLeft size={16} className="shrink-0" />
                       <span>Previous Step</span>
                     </button>
                   ) : (
@@ -699,7 +750,7 @@ export default function ContactSalesClient() {
                       className="inline-flex items-center gap-1.5 px-6 py-3 rounded-full bg-gray-900 text-white text-xs font-bold uppercase tracking-wider hover:bg-gray-800 transition-colors shadow-sm cursor-pointer ml-auto"
                     >
                       <span>Continue</span>
-                      <ChevronRight size={16} />
+                      <ChevronRight size={16} className="shrink-0" />
                     </button>
                   ) : (
                     <button
@@ -707,7 +758,7 @@ export default function ContactSalesClient() {
                       onClick={handleBookConsultation}
                       className="inline-flex items-center gap-1.5 px-7 py-3.5 rounded-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-lg shadow-purple-600/10 cursor-pointer ml-auto"
                     >
-                      <CalendarIcon size={16} />
+                      <CalendarIcon size={16} className="shrink-0" />
                       <span>Confirm Booking</span>
                     </button>
                   )}
@@ -734,7 +785,7 @@ export default function ContactSalesClient() {
                 animate={{ opacity: 1 }}
                 className="p-8 sm:p-16 flex flex-col items-center justify-center text-center space-y-8"
               >
-                <div className="h-16 w-16 bg-green-50 rounded-full flex items-center justify-center text-green-600 border border-green-100 shadow-sm">
+                <div className="h-16 w-16 shrink-0 bg-green-50 rounded-full flex items-center justify-center text-green-600 border border-green-100 shadow-sm">
                   <CheckCircle size={32} />
                 </div>
                 
@@ -776,7 +827,7 @@ export default function ContactSalesClient() {
                   href="/" 
                   className="inline-flex items-center gap-1.5 px-6 py-3 rounded-full bg-gray-900 text-white text-xs font-bold uppercase tracking-wider hover:bg-gray-800 transition-colors shadow-sm"
                 >
-                  <ArrowLeft size={16} />
+                  <ArrowLeft size={16} className="shrink-0" />
                   <span>Return to Home</span>
                 </Link>
               </motion.div>
@@ -821,7 +872,7 @@ export default function ContactSalesClient() {
                 boxShadow: `8px 8px 16px #d1d5db, -8px -8px 16px #ffffff`,
               }}
             >
-              <span className="h-8 w-8 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-xs mb-6 shadow-md shadow-purple-600/10">
+              <span className="h-8 w-8 shrink-0 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-xs mb-6 shadow-md shadow-purple-600/10">
                 {item.step}
               </span>
               <div>
