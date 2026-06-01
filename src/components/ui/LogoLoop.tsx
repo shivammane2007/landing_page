@@ -62,7 +62,7 @@ const useAnimationLoop = (trackRef: any, targetVelocity: number, seqWidth: numbe
   const rafRef = useRef<number | null>(null);
   const lastTimestampRef = useRef<number | null>(null);
   const offsetRef = useRef(0);
-  const velocityRef = useRef(0);
+  const velocityRef = useRef(targetVelocity);
 
   useEffect(() => {
     const track = trackRef.current;

@@ -135,15 +135,17 @@ export default function FloatingProgressNav() {
   }, [activeIndex, scrollToSection]);
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ y: 50, opacity: 0, x: "-50%" }}
-          animate={{ y: 0, opacity: 1, x: "-50%" }}
-          exit={{ y: 50, opacity: 0, x: "-50%" }}
-          transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="fixed bottom-4 md:bottom-6 left-1/2 z-[1000] pointer-events-auto"
-        >
+    <motion.div
+      initial={{ y: 50, opacity: 0, x: "-50%" }}
+      animate={{ 
+        y: isVisible ? 0 : 50, 
+        opacity: isVisible ? 1 : 0, 
+        x: "-50%",
+        pointerEvents: isVisible ? "auto" : "none" 
+      }}
+      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className="fixed bottom-4 md:bottom-6 left-1/2 z-[1000]"
+    >
           <LiquidButton
             onClick={scrollToNext}
             className="flex items-center gap-3 md:gap-4 !bg-[#111111]/90 backdrop-blur-md border border-white/10 shadow-2xl !rounded-full !h-[56px] !px-5 !py-3 cursor-pointer group"
@@ -209,8 +211,6 @@ export default function FloatingProgressNav() {
               </AnimatePresence>
             </div>
           </LiquidButton>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    </motion.div>
   );
 }

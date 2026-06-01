@@ -6,6 +6,7 @@ import { useAnimatedCounter } from '../hooks/useAnimatedCounter';
 import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
 import BorderGlow from './ui/BorderGlow';
 import LogoLoop from './ui/LogoLoop';
+import MoviePassButton from './ui/movie-pass';
 
 const StatItem = ({ target, label, suffix = '' }: { target: number, label: string, suffix?: string }) => {
   const { ref, count } = useAnimatedCounter(target, 2000);
@@ -114,9 +115,9 @@ export default function Trust() {
           className="flex flex-wrap justify-center gap-4"
         >
           {['ISO 13485 Certified', 'CE Marked', 'FDA Cleared'].map(cert => (
-            <span key={cert} className="bg-white text-gray-500 rounded-full px-5 py-2 text-sm font-medium border border-gray-200 shadow-sm">
+            <MoviePassButton key={cert}>
               {cert}
-            </span>
+            </MoviePassButton>
           ))}
         </motion.div>
 
