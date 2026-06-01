@@ -22,11 +22,15 @@ import {
   Loader2, 
   CheckCircle,
   Building,
-  Activity
+  Activity,
+  Layers,
+  Users,
+  Monitor
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import AnimatedGenerateButton from '@/components/ui/animated-generate-button-shadcn-tailwind';
 import { Calendar } from '@/components/ui/calendar-rac';
+import StatsClay from '@/src/components/ContentBlocks/StatsSections/tsx/StatsClay';
 
 // Specialist Profiles
 const specialists = [
@@ -124,6 +128,19 @@ const mockSlots: TimeSlot[] = [
 
 export default function ContactSalesClient() {
   const formRef = useRef<HTMLDivElement>(null);
+  
+  const timelineCardVariants: any = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    }),
+  };
   
   // Active state for themed ElasticGrid
   const [active, setActive] = useState(0);
@@ -769,171 +786,6 @@ export default function ContactSalesClient() {
         </div>
       </section>
 
-      {/* TRUST SECTION */}
-      <section className="max-w-6xl mx-auto px-6 sm:px-12 md:px-20 lg:px-28 py-20 border-t border-gray-300/30 mt-12">
-        <div className="text-center mb-12">
-          <span className="text-[11px] font-bold text-blue-500 uppercase tracking-widest block mb-2">Proven Clinical Impact</span>
-          <h2 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Why people choose us.</h2>
-        </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { stat: "10,000+", label: "Lives Improved", desc: "Engineered limbs that have returned patients to active careers and daily independence." },
-            { stat: "98%", label: "Satisfaction", desc: "Highest satisfaction score in clinical trials for usability, calibration, and comfort." },
-            { stat: "25+", label: "Countries Supported", desc: "A global web of certified clinics, rehabilitation counselors, and field support teams." },
-            { stat: "24/7", label: "Specialist Support", desc: "Ongoing calibration support, technical troubleshooting, and direct clinic assistance." }
-          ].map((item, idx) => (
-            <div key={idx} className="bg-white rounded-2xl p-6 border border-gray-200/50 shadow-sm flex flex-col justify-between">
-              <span className="text-3xl font-extrabold text-gray-900 tracking-tight">{item.stat}</span>
-              <div className="mt-4">
-                <span className="text-sm font-bold text-gray-900 block mb-1">{item.label}</span>
-                <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ELASTIC GRID SECTION */}
-      <section className="max-w-6xl mx-auto px-6 sm:px-12 md:px-20 lg:px-28 py-20 border-t border-gray-300/30">
-        {/* Header */}
-        <div className="text-center mb-10">
-          <p className="text-xs font-mono uppercase tracking-widest mb-3 text-blue-500">
-            Engineered For Freedom
-          </p>
-          <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tight mb-3">Designed for real-world mobility</h2>
-          <p className="text-gray-500 text-base max-w-2xl mx-auto">Advanced prosthetics engineered for active comfort, natural movement, and direct neural feedback.</p>
-        </div>
-
-        {/* Elastic accordion */}
-        <div className="flex flex-col md:flex-row gap-4 w-full h-[600px] mt-10">
-          {bionicFeatures.map((item, i) => (
-            <motion.div
-              key={i}
-              layout
-              onClick={() => setActive(i)}
-              className={cn(
-                "relative rounded-[2rem] overflow-hidden cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]",
-                active === i ? "flex-[10]" : "flex-[1] bg-white hover:bg-neutral-200"
-              )}
-            >
-              {/* Background image & Overlay */}
-              <motion.div
-                className="absolute inset-0"
-                initial={false}
-                animate={{ opacity: active === i ? 1 : 0 }}
-              >
-                <img src={item.img} className="w-full h-full object-cover" alt="" />
-                {/* Dark gradient overlay for text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
-              </motion.div>
-
-              {/* Vertical label (inactive) */}
-              <div className={cn(
-                "absolute inset-0 flex items-center justify-center transition-opacity duration-300",
-                active === i ? "opacity-0 pointer-events-none" : "opacity-100"
-              )}>
-                <h3 className="transform -rotate-90 text-xl font-bold text-neutral-400 whitespace-nowrap uppercase tracking-widest">
-                  {item.label}
-                </h3>
-              </div>
-
-              {/* Expanded content */}
-              <div className={cn(
-                "relative h-full flex flex-col justify-end p-8 md:p-12 transition-opacity duration-500 delay-100",
-                active === i ? "opacity-100" : "opacity-0 pointer-events-none"
-              )}>
-                <span
-                  className="text-xs font-mono uppercase tracking-widest mb-4 px-3 py-1 rounded-full w-fit bg-blue-500/90 text-white drop-shadow-md"
-                >
-                  {item.label}
-                </span>
-                <motion.h2 layout="position" className="text-3xl md:text-5xl font-black !text-white mb-4 leading-tight drop-shadow-lg">
-                  {item.heading}
-                </motion.h2>
-                <motion.p layout="position" className="text-sm md:text-base !text-white/90 max-w-lg drop-shadow-md">
-                  {item.sub}
-                </motion.p>
-                <motion.button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    scrollToForm();
-                  }}
-                  whileHover={{ scale: 1.05, backgroundColor: "#fff", color: "#000" }}
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-8 px-6 py-3 border border-white text-white rounded-full w-fit font-medium transition-colors cursor-pointer text-xs uppercase tracking-wider"
-                >
-                  Book Free Assessment →
-                </motion.button>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* MEET YOUR SPECIALISTS */}
-      <section className="max-w-6xl mx-auto px-6 sm:px-12 md:px-20 lg:px-28 py-20 border-t border-gray-300/30">
-        <div className="text-center mb-16">
-          <span className="text-[11px] font-bold text-blue-500 uppercase tracking-widest block mb-2">Clinical Oversight</span>
-          <h2 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Meet your specialists.</h2>
-          <p className="text-sm text-gray-500 mt-2 max-w-lg mx-auto">World-class clinical managers and bionics researchers who design, calibrate, and support your setup.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {specialists.map((spec, idx) => (
-            <div key={idx} className="bg-white rounded-3xl overflow-hidden border border-gray-200/50 shadow-sm flex flex-col h-full group">
-              <div className="h-64 relative bg-gray-50 overflow-hidden shrink-0">
-                <img 
-                  src={spec.image} 
-                  alt={spec.name} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                />
-                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider text-gray-900 shadow-sm">
-                  {spec.experience}
-                </div>
-              </div>
-              <div className="p-6 flex flex-col flex-grow justify-between">
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-0.5">{spec.name}</h3>
-                  <span className="text-xs text-blue-500 font-semibold uppercase tracking-wider block mb-4">{spec.role}</span>
-                  <p className="text-xs text-gray-500 leading-relaxed">{spec.bio}</p>
-                </div>
-                <div className="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                  <span>Clinical Lead</span>
-                  <span className="text-green-500 flex items-center gap-1">● Active</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* TESTIMONIAL MINI SECTION */}
-      <section className="max-w-6xl mx-auto px-6 sm:px-12 md:px-20 lg:px-28 py-20 border-t border-gray-300/30">
-        <div className="text-center mb-16">
-          <span className="text-[11px] font-bold text-blue-500 uppercase tracking-widest block mb-2">Patient Voices</span>
-          <h2 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Real experiences. Real freedom.</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((test, idx) => (
-            <div key={idx} className="bg-white rounded-2xl p-6 border border-gray-200/50 shadow-sm flex flex-col justify-between h-full">
-              <p className="text-sm text-gray-600 leading-relaxed italic mb-8">
-                "{test.quote}"
-              </p>
-              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                <div className="h-8 w-8 rounded-full bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs">
-                  {test.author.charAt(0)}
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-gray-900 block">{test.author}</span>
-                  <span className="text-[10px] text-gray-400 block">{test.role}, {test.location}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* PROCESS TIMELINE */}
       <section className="max-w-6xl mx-auto px-6 sm:px-12 md:px-20 lg:px-28 py-20 border-t border-gray-300/30">
@@ -951,18 +803,48 @@ export default function ContactSalesClient() {
             { step: "4", title: "AI Calibration", desc: "Train your customized neural control model to mirror natural signals." },
             { step: "5", title: "Delivery & Fit", desc: "Receive your calibrated device with full safety certification." }
           ].map((item, idx) => (
-            <div key={idx} className="bg-white rounded-2xl p-6 border border-gray-200/50 shadow-sm flex flex-col justify-between relative z-10">
+            <motion.div
+              key={idx}
+              custom={idx}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={timelineCardVariants}
+              whileHover={{
+                y: -10,
+                boxShadow: `12px 12px 24px #c8cacc, -12px -12px 24px #ffffff`,
+                transition: { type: "spring", stiffness: 300, damping: 20 },
+              }}
+              className="group rounded-[2rem] flex flex-col justify-between p-8 cursor-default relative z-10"
+              style={{
+                backgroundColor: "#f0f0ee",
+                boxShadow: `8px 8px 16px #d1d5db, -8px -8px 16px #ffffff`,
+              }}
+            >
               <span className="h-8 w-8 rounded-full bg-blue-500 text-white font-bold flex items-center justify-center text-xs mb-6 shadow-md shadow-blue-500/10">
                 {item.step}
               </span>
               <div>
-                <span className="text-sm font-bold text-gray-900 block mb-1">{item.title}</span>
+                <span className="text-sm font-bold text-gray-900 block mb-2">{item.title}</span>
                 <p className="text-[11px] text-gray-500 leading-relaxed">{item.desc}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
+
+      {/* STATS CLAY SECTION */}
+      <StatsClay 
+        stats={[
+          { value: "50K+", label: "Units Deployed", icon: Layers },
+          { value: "10K+", label: "Active Patients", icon: Users },
+          { value: "99%", label: "Satisfaction Rate", icon: Heart },
+          { value: "24h", label: "Battery Performance", icon: Monitor }
+        ]}
+        title="Built for Mobility, Designed for Life"
+        subtitle="The clinical milestones and performance metrics behind our bionic prosthetics."
+        accentColor="#3b82f6"
+      />
 
       {/* CTA SECTION */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -970,11 +852,10 @@ export default function ContactSalesClient() {
           {/* Subtle accent light */}
           <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full bg-blue-500/15 blur-3xl pointer-events-none" />
           
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 max-w-lg leading-tight relative z-10">
+          <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tight relative z-10 !text-white">
             Ready to take the next step?
           </h2>
-          
-          <p className="text-gray-400 text-sm sm:text-base mb-10 max-w-md relative z-10">
+          <p className="!text-gray-400 text-base max-w-xl mx-auto mb-10 relative z-10">
             Begin your bionic mobility assessment today. Select your preferred slot and our clinical engineers will do the rest.
           </p>
           
