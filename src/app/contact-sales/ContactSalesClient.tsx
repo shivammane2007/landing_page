@@ -26,6 +26,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import AnimatedGenerateButton from '@/components/ui/animated-generate-button-shadcn-tailwind';
+import { Calendar } from '@/components/ui/calendar-rac';
 
 // Specialist Profiles
 const specialists = [
@@ -619,47 +620,12 @@ export default function ContactSalesClient() {
 
                       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
                         
-                        {/* Static calendar simulation */}
-                        <div className="md:col-span-6 bg-gray-50/80 p-5 rounded-2xl border border-gray-100">
-                          <div className="flex justify-between items-center mb-4 px-2">
-                            <span className="text-sm font-bold text-gray-900">June 2026</span>
-                            <div className="flex gap-2 text-gray-400">
-                              <ChevronLeft size={16} className="cursor-not-allowed" />
-                              <ChevronRight size={16} className="cursor-not-allowed" />
-                            </div>
-                          </div>
-                          
-                          <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-bold text-gray-400 mb-2">
-                            <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
-                          </div>
-                          
-                          <div className="grid grid-cols-7 gap-1 text-center text-xs">
-                            {/* Empty pads for starting day */}
-                            <span className="py-2 text-gray-300">31</span>
-                            {[...Array(14)].map((_, i) => {
-                              const day = i + 1;
-                              const isAvailable = day >= 8 && day <= 12;
-                              return (
-                                <button
-                                  type="button"
-                                  key={day}
-                                  disabled={!isAvailable}
-                                  className={`py-2 rounded-lg font-medium transition-all ${isAvailable ? 'text-gray-900 hover:bg-blue-500 hover:text-white cursor-pointer bg-white border border-gray-100 shadow-sm font-bold' : 'text-gray-300 pointer-events-none'}`}
-                                >
-                                  {day}
-                                </button>
-                              );
-                            })}
-                            {[...Array(16)].map((_, i) => {
-                              const day = i + 15;
-                              return (
-                                <span key={day} className="py-2 text-gray-300 font-normal">{day}</span>
-                              );
-                            })}
-                          </div>
-                          <div className="mt-4 pt-3 border-t border-gray-200/50 flex items-center gap-2 text-[10px] text-gray-400 font-medium justify-center">
+                        {/* Interactive React Aria Calendar */}
+                        <div className="md:col-span-6 bg-gray-50/80 p-5 rounded-2xl border border-gray-100 flex flex-col items-center">
+                          <Calendar className="w-full bg-transparent" />
+                          <div className="mt-4 w-full pt-3 border-t border-gray-200/50 flex items-center gap-2 text-[10px] text-gray-400 font-medium justify-center">
                             <span className="h-2 w-2 rounded-full bg-blue-500" />
-                            <span>Highlighted days contain clinical slots</span>
+                            <span>Select a highlighted day to view slots</span>
                           </div>
                         </div>
 
