@@ -259,7 +259,7 @@ export default function ContactSalesClient() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f0f0ee] text-gray-900 selection:bg-blue-500 selection:text-white font-sans antialiased pb-20">
+    <div className="min-h-screen bg-[#f0f0ee] text-gray-900 selection:bg-purple-600 selection:text-white font-sans antialiased pb-20">
       
       {/* MINIMAL HEADER */}
       <header className="w-full px-6 py-6 sm:px-12 md:px-20 lg:px-28 flex justify-between items-center z-50">
@@ -271,7 +271,7 @@ export default function ContactSalesClient() {
           <span className="text-xs font-semibold uppercase tracking-wider">Back to Home</span>
         </Link>
         <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
+          <span className="h-2 w-2 rounded-full bg-purple-600 animate-pulse"></span>
           <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Bionic Clinical Portal</span>
         </div>
       </header>
@@ -281,7 +281,7 @@ export default function ContactSalesClient() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-semibold mb-6">
+            <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-600 px-3 py-1 rounded-full text-xs font-semibold mb-6">
               <Activity size={12} />
               <span>Personalized Assessment & Consultation</span>
             </div>
@@ -297,7 +297,7 @@ export default function ContactSalesClient() {
 
           <div className="lg:col-span-5 flex justify-center relative">
             {/* Background Radial Glow */}
-            <div className="absolute inset-0 bg-radial-gradient from-blue-500/10 to-transparent blur-3xl pointer-events-none rounded-full w-72 h-72 mx-auto top-1/2 -translate-y-1/2" />
+            <div className="absolute inset-0 bg-radial-gradient from-purple-600/10 to-transparent blur-3xl pointer-events-none rounded-full w-72 h-72 mx-auto top-1/2 -translate-y-1/2" />
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{
@@ -327,7 +327,7 @@ export default function ContactSalesClient() {
             {submitStatus !== 'success' && (
               <div className="h-1.5 w-full bg-gray-100 relative">
                 <div 
-                  className="h-full bg-blue-500 transition-all duration-500 ease-out" 
+                  className="h-full bg-purple-600 transition-all duration-500 ease-out" 
                   style={{ width: `${(step / 4) * 100}%` }}
                 />
               </div>
@@ -339,21 +339,21 @@ export default function ContactSalesClient() {
                 {/* STEP INDICATORS */}
                 <div className="flex items-center justify-between mb-10 text-xs font-semibold text-gray-400 tracking-wider">
                   <div className={`flex items-center gap-2 ${step >= 1 ? 'text-gray-900 font-bold' : ''}`}>
-                    <span className={`h-5 w-5 rounded-full flex items-center justify-center border ${step > 1 ? 'bg-blue-500 border-blue-500 text-white' : step === 1 ? 'border-gray-900 text-gray-900' : 'border-gray-200'}`}>
+                    <span className={`h-5 w-5 rounded-full flex items-center justify-center border ${step > 1 ? 'bg-purple-600 border-purple-600 text-white' : step === 1 ? 'border-gray-900 text-gray-900' : 'border-gray-200'}`}>
                       {step > 1 ? <Check size={10} /> : '1'}
                     </span>
                     <span>PROFILE</span>
                   </div>
                   <div className="h-px bg-gray-200 flex-1 mx-4" />
                   <div className={`flex items-center gap-2 ${step >= 2 ? 'text-gray-900 font-bold' : ''}`}>
-                    <span className={`h-5 w-5 rounded-full flex items-center justify-center border ${step > 2 ? 'bg-blue-500 border-blue-500 text-white' : step === 2 ? 'border-gray-900 text-gray-900' : 'border-gray-200'}`}>
+                    <span className={`h-5 w-5 rounded-full flex items-center justify-center border ${step > 2 ? 'bg-purple-600 border-purple-600 text-white' : step === 2 ? 'border-gray-900 text-gray-900' : 'border-gray-200'}`}>
                       {step > 2 ? <Check size={10} /> : '2'}
                     </span>
                     <span>SOLUTION</span>
                   </div>
                   <div className="h-px bg-gray-200 flex-1 mx-4" />
                   <div className={`flex items-center gap-2 ${step >= 3 ? 'text-gray-900 font-bold' : ''}`}>
-                    <span className={`h-5 w-5 rounded-full flex items-center justify-center border ${step > 3 ? 'bg-blue-500 border-blue-500 text-white' : step === 3 ? 'border-gray-900 text-gray-900' : 'border-gray-200'}`}>
+                    <span className={`h-5 w-5 rounded-full flex items-center justify-center border ${step > 3 ? 'bg-purple-600 border-purple-600 text-white' : step === 3 ? 'border-gray-900 text-gray-900' : 'border-gray-200'}`}>
                       {step > 3 ? <Check size={10} /> : '3'}
                     </span>
                     <span>TIMELINE</span>
@@ -399,11 +399,11 @@ export default function ContactSalesClient() {
                             value={formData.name}
                             onChange={handleInputChange}
                             placeholder="Full Name"
-                            className={`peer w-full pl-12 pr-4 pt-6 pb-2 rounded-2xl border text-sm text-gray-900 bg-white placeholder-transparent focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all ${errors.name ? 'border-red-400 focus:border-red-500 focus:ring-red-500/10' : 'border-gray-200'}`}
+                            className={`peer w-full pl-12 pr-4 pt-6 pb-2 rounded-2xl border text-sm text-gray-900 bg-white placeholder-transparent focus:outline-none focus:ring-4 focus:ring-purple-600/10 focus:border-purple-600 transition-all ${errors.name ? 'border-red-400 focus:border-red-500 focus:ring-red-500/10' : 'border-gray-200'}`}
                           />
                           <label 
                             htmlFor="name" 
-                            className="absolute left-12 top-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-placeholder-shown:lowercase peer-placeholder-shown:first-letter:uppercase peer-focus:top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:text-blue-500 select-none pointer-events-none"
+                            className="absolute left-12 top-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-placeholder-shown:lowercase peer-placeholder-shown:first-letter:uppercase peer-focus:top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:text-purple-600 select-none pointer-events-none"
                           >
                             Full Name
                           </label>
@@ -422,11 +422,11 @@ export default function ContactSalesClient() {
                             value={formData.email}
                             onChange={handleInputChange}
                             placeholder="Email Address"
-                            className={`peer w-full pl-12 pr-4 pt-6 pb-2 rounded-2xl border text-sm text-gray-900 bg-white placeholder-transparent focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all ${errors.email ? 'border-red-400 focus:border-red-500 focus:ring-red-500/10' : 'border-gray-200'}`}
+                            className={`peer w-full pl-12 pr-4 pt-6 pb-2 rounded-2xl border text-sm text-gray-900 bg-white placeholder-transparent focus:outline-none focus:ring-4 focus:ring-purple-600/10 focus:border-purple-600 transition-all ${errors.email ? 'border-red-400 focus:border-red-500 focus:ring-red-500/10' : 'border-gray-200'}`}
                           />
                           <label 
                             htmlFor="email" 
-                            className="absolute left-12 top-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-placeholder-shown:lowercase peer-placeholder-shown:first-letter:uppercase peer-focus:top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:text-blue-500 select-none pointer-events-none"
+                            className="absolute left-12 top-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-placeholder-shown:lowercase peer-placeholder-shown:first-letter:uppercase peer-focus:top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:text-purple-600 select-none pointer-events-none"
                           >
                             Email Address
                           </label>
@@ -445,11 +445,11 @@ export default function ContactSalesClient() {
                             value={formData.phone}
                             onChange={handleInputChange}
                             placeholder="Phone Number"
-                            className={`peer w-full pl-12 pr-4 pt-6 pb-2 rounded-2xl border text-sm text-gray-900 bg-white placeholder-transparent focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all ${errors.phone ? 'border-red-400 focus:border-red-500 focus:ring-red-500/10' : 'border-gray-200'}`}
+                            className={`peer w-full pl-12 pr-4 pt-6 pb-2 rounded-2xl border text-sm text-gray-900 bg-white placeholder-transparent focus:outline-none focus:ring-4 focus:ring-purple-600/10 focus:border-purple-600 transition-all ${errors.phone ? 'border-red-400 focus:border-red-500 focus:ring-red-500/10' : 'border-gray-200'}`}
                           />
                           <label 
                             htmlFor="phone" 
-                            className="absolute left-12 top-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-placeholder-shown:lowercase peer-placeholder-shown:first-letter:uppercase peer-focus:top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:text-blue-500 select-none pointer-events-none"
+                            className="absolute left-12 top-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-placeholder-shown:lowercase peer-placeholder-shown:first-letter:uppercase peer-focus:top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:text-purple-600 select-none pointer-events-none"
                           >
                             Phone Number
                           </label>
@@ -468,11 +468,11 @@ export default function ContactSalesClient() {
                             value={formData.country}
                             onChange={handleInputChange}
                             placeholder="Country"
-                            className={`peer w-full pl-12 pr-4 pt-6 pb-2 rounded-2xl border text-sm text-gray-900 bg-white placeholder-transparent focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all ${errors.country ? 'border-red-400 focus:border-red-500 focus:ring-red-500/10' : 'border-gray-200'}`}
+                            className={`peer w-full pl-12 pr-4 pt-6 pb-2 rounded-2xl border text-sm text-gray-900 bg-white placeholder-transparent focus:outline-none focus:ring-4 focus:ring-purple-600/10 focus:border-purple-600 transition-all ${errors.country ? 'border-red-400 focus:border-red-500 focus:ring-red-500/10' : 'border-gray-200'}`}
                           />
                           <label 
                             htmlFor="country" 
-                            className="absolute left-12 top-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-placeholder-shown:lowercase peer-placeholder-shown:first-letter:uppercase peer-focus:top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:text-blue-500 select-none pointer-events-none"
+                            className="absolute left-12 top-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-placeholder-shown:lowercase peer-placeholder-shown:first-letter:uppercase peer-focus:top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:text-purple-600 select-none pointer-events-none"
                           >
                             Country
                           </label>
@@ -491,11 +491,11 @@ export default function ContactSalesClient() {
                             value={formData.occupation}
                             onChange={handleInputChange}
                             placeholder="Occupation"
-                            className={`peer w-full pl-12 pr-4 pt-6 pb-2 rounded-2xl border text-sm text-gray-900 bg-white placeholder-transparent focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all ${errors.occupation ? 'border-red-400 focus:border-red-500 focus:ring-red-500/10' : 'border-gray-200'}`}
+                            className={`peer w-full pl-12 pr-4 pt-6 pb-2 rounded-2xl border text-sm text-gray-900 bg-white placeholder-transparent focus:outline-none focus:ring-4 focus:ring-purple-600/10 focus:border-purple-600 transition-all ${errors.occupation ? 'border-red-400 focus:border-red-500 focus:ring-red-500/10' : 'border-gray-200'}`}
                           />
                           <label 
                             htmlFor="occupation" 
-                            className="absolute left-12 top-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-placeholder-shown:lowercase peer-placeholder-shown:first-letter:uppercase peer-focus:top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:text-blue-500 select-none pointer-events-none"
+                            className="absolute left-12 top-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-placeholder-shown:lowercase peer-placeholder-shown:first-letter:uppercase peer-focus:top-2 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase peer-focus:text-purple-600 select-none pointer-events-none"
                           >
                             Occupation
                           </label>
@@ -512,7 +512,7 @@ export default function ContactSalesClient() {
                             id="situation"
                             value={formData.situation}
                             onChange={handleInputChange}
-                            className="w-full pl-12 pr-4 pt-6 pb-2 rounded-2xl border border-gray-200 text-sm text-gray-900 bg-white focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all appearance-none cursor-pointer"
+                            className="w-full pl-12 pr-4 pt-6 pb-2 rounded-2xl border border-gray-200 text-sm text-gray-900 bg-white focus:outline-none focus:ring-4 focus:ring-purple-600/10 focus:border-purple-600 transition-all appearance-none cursor-pointer"
                           >
                             <option value="Personal Use">Personal Use</option>
                             <option value="Hospital">Hospital</option>
@@ -562,11 +562,11 @@ export default function ContactSalesClient() {
                             type="button"
                             key={opt.id}
                             onClick={() => handleSelectOption('solution', opt.title)}
-                            className={`p-6 text-left rounded-2xl border-2 transition-all flex flex-col justify-between h-40 ${formData.solution === opt.title ? 'border-blue-500 bg-blue-50/20 shadow-md ring-4 ring-blue-500/5' : 'border-gray-100 hover:border-gray-200 hover:bg-gray-50/50'}`}
+                            className={`p-6 text-left rounded-2xl border-2 transition-all flex flex-col justify-between h-40 ${formData.solution === opt.title ? 'border-purple-600 bg-purple-50/20 shadow-md ring-4 ring-purple-600/5' : 'border-gray-100 hover:border-gray-200 hover:bg-gray-50/50'}`}
                           >
                             <div className="flex justify-between items-start w-full">
                               <span className="text-base font-bold text-gray-900">{opt.title}</span>
-                              <div className={`h-5 w-5 rounded-full flex items-center justify-center border transition-all ${formData.solution === opt.title ? 'bg-blue-500 border-blue-500 text-white' : 'border-gray-200'}`}>
+                              <div className={`h-5 w-5 rounded-full flex items-center justify-center border transition-all ${formData.solution === opt.title ? 'bg-purple-600 border-purple-600 text-white' : 'border-gray-200'}`}>
                                 {formData.solution === opt.title && <Check size={10} />}
                               </div>
                             </div>
@@ -604,13 +604,13 @@ export default function ContactSalesClient() {
                             type="button"
                             key={opt.id}
                             onClick={() => handleSelectOption('timeframe', opt.title)}
-                            className={`w-full p-5 text-left rounded-2xl border-2 transition-all flex items-center justify-between ${formData.timeframe === opt.title ? 'border-blue-500 bg-blue-50/20 shadow-md ring-4 ring-blue-500/5' : 'border-gray-100 hover:border-gray-200 hover:bg-gray-50/50'}`}
+                            className={`w-full p-5 text-left rounded-2xl border-2 transition-all flex items-center justify-between ${formData.timeframe === opt.title ? 'border-purple-600 bg-purple-50/20 shadow-md ring-4 ring-purple-600/5' : 'border-gray-100 hover:border-gray-200 hover:bg-gray-50/50'}`}
                           >
                             <div className="flex flex-col">
                               <span className="text-sm font-bold text-gray-900">{opt.title}</span>
                               <span className="text-xs text-gray-500 mt-1">{opt.subtitle}</span>
                             </div>
-                            <div className={`h-5 w-5 rounded-full flex items-center justify-center border transition-all shrink-0 ml-4 ${formData.timeframe === opt.title ? 'bg-blue-500 border-blue-500 text-white' : 'border-gray-200'}`}>
+                            <div className={`h-5 w-5 rounded-full flex items-center justify-center border transition-all shrink-0 ml-4 ${formData.timeframe === opt.title ? 'bg-purple-600 border-purple-600 text-white' : 'border-gray-200'}`}>
                               {formData.timeframe === opt.title && <Check size={10} />}
                             </div>
                           </button>
@@ -641,7 +641,7 @@ export default function ContactSalesClient() {
                         <div className="md:col-span-6 bg-gray-50/80 p-5 rounded-2xl border border-gray-100 flex flex-col items-center">
                           <Calendar className="w-full bg-transparent" />
                           <div className="mt-4 w-full pt-3 border-t border-gray-200/50 flex items-center gap-2 text-[10px] text-gray-400 font-medium justify-center">
-                            <span className="h-2 w-2 rounded-full bg-blue-500" />
+                            <span className="h-2 w-2 rounded-full bg-purple-600" />
                             <span>Select a highlighted day to view slots</span>
                           </div>
                         </div>
@@ -657,13 +657,13 @@ export default function ContactSalesClient() {
                                   type="button"
                                   key={slot.id}
                                   onClick={() => handleSelectOption('selectedSlot', `${slot.dayName}, ${slot.dateStr} at ${slot.time}`)}
-                                  className={`w-full p-3 rounded-xl border text-left transition-all flex items-center justify-between text-xs ${isSelected ? 'border-blue-500 bg-blue-50/20 font-bold ring-2 ring-blue-500/5' : 'border-gray-100 hover:border-gray-200 bg-white hover:bg-gray-50'}`}
+                                  className={`w-full p-3 rounded-xl border text-left transition-all flex items-center justify-between text-xs ${isSelected ? 'border-purple-600 bg-purple-50/20 font-bold ring-2 ring-purple-600/5' : 'border-gray-100 hover:border-gray-200 bg-white hover:bg-gray-50'}`}
                                 >
                                   <div className="flex items-center gap-3">
                                     <Clock size={12} className="text-gray-400" />
                                     <span>{slot.dayName}, {slot.dateStr}</span>
                                   </div>
-                                  <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold ${isSelected ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700'}`}>{slot.time}</span>
+                                  <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold ${isSelected ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-700'}`}>{slot.time}</span>
                                 </button>
                               );
                             })}
@@ -705,7 +705,7 @@ export default function ContactSalesClient() {
                     <button
                       type="button"
                       onClick={handleBookConsultation}
-                      className="inline-flex items-center gap-1.5 px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-lg shadow-blue-500/10 cursor-pointer ml-auto"
+                      className="inline-flex items-center gap-1.5 px-7 py-3.5 rounded-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-lg shadow-purple-600/10 cursor-pointer ml-auto"
                     >
                       <CalendarIcon size={16} />
                       <span>Confirm Booking</span>
@@ -719,7 +719,7 @@ export default function ContactSalesClient() {
             {/* SUBMIT LOADING STATE */}
             {submitStatus === 'loading' && (
               <div className="p-12 sm:p-20 flex flex-col items-center justify-center text-center space-y-6">
-                <Loader2 className="h-12 w-12 text-blue-500 animate-spin" />
+                <Loader2 className="h-12 w-12 text-purple-600 animate-spin" />
                 <div className="space-y-2">
                   <h3 className="text-xl font-bold text-gray-900">Configuring Clinical Consultation...</h3>
                   <p className="text-sm text-gray-500 max-w-sm mx-auto">Connecting with clinical leads, securing end-to-end encrypted rooms, and preparing patient briefing guides.</p>
@@ -749,7 +749,7 @@ export default function ContactSalesClient() {
                 <div className="w-full max-w-md bg-gray-50 border border-gray-200/50 rounded-2xl p-6 text-left space-y-4">
                   <div className="flex justify-between items-center text-xs border-b border-gray-200/50 pb-3">
                     <span className="font-bold text-gray-400 uppercase tracking-wider">Appointment Summary</span>
-                    <span className="bg-blue-50 text-blue-600 px-2 py-0.5 rounded font-bold uppercase text-[9px] tracking-wide">SECURE MEETING</span>
+                    <span className="bg-purple-50 text-purple-600 px-2 py-0.5 rounded font-bold uppercase text-[9px] tracking-wide">SECURE MEETING</span>
                   </div>
                   
                   <div className="grid grid-cols-2 gap-4 text-xs">
@@ -790,7 +790,7 @@ export default function ContactSalesClient() {
       {/* PROCESS TIMELINE */}
       <section className="max-w-6xl mx-auto px-6 sm:px-12 md:px-20 lg:px-28 py-20 border-t border-gray-300/30">
         <div className="text-center mb-16">
-          <span className="text-[11px] font-bold text-blue-500 uppercase tracking-widest block mb-2">The Journey</span>
+          <span className="text-[11px] font-bold text-purple-600 uppercase tracking-widest block mb-2">The Journey</span>
           <h2 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Your journey starts here.</h2>
           <p className="text-sm text-gray-500 mt-2 max-w-lg mx-auto">A transparent, step-by-step clinical process tailored to prepare, design, fit, and deliver your prosthetic device.</p>
         </div>
@@ -821,7 +821,7 @@ export default function ContactSalesClient() {
                 boxShadow: `8px 8px 16px #d1d5db, -8px -8px 16px #ffffff`,
               }}
             >
-              <span className="h-8 w-8 rounded-full bg-blue-500 text-white font-bold flex items-center justify-center text-xs mb-6 shadow-md shadow-blue-500/10">
+              <span className="h-8 w-8 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-xs mb-6 shadow-md shadow-purple-600/10">
                 {item.step}
               </span>
               <div>
@@ -843,14 +843,14 @@ export default function ContactSalesClient() {
         ]}
         title="Built for Mobility, Designed for Life"
         subtitle="The clinical milestones and performance metrics behind our bionic prosthetics."
-        accentColor="#3b82f6"
+        accentColor="#9333ea"
       />
 
       {/* CTA SECTION */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="bg-gray-900 text-white rounded-[32px] p-8 sm:p-16 border border-gray-800 shadow-2xl relative overflow-hidden flex flex-col items-center text-center">
           {/* Subtle accent light */}
-          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full bg-blue-500/15 blur-3xl pointer-events-none" />
+          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full bg-purple-600/15 blur-3xl pointer-events-none" />
           
           <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tight relative z-10 !text-white">
             Ready to take the next step?
