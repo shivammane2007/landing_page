@@ -6,8 +6,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react'
-import { motion, useAnimation, useInView } from "framer-motion"
-import { useEffect, useRef, useState } from "react"
+import { motion } from "framer-motion"
+import { useState } from "react"
 
 export interface Testimonial {
   id: number
@@ -23,7 +23,6 @@ export interface TestimonialsSectionProps {
   title?: string
   subtitle?: string
   testimonials?: Testimonial[]
-  autoRotateInterval?: number
   showVerifiedBadge?: boolean
   trustedCompanies?: string[]
   trustedCompaniesTitle?: string
@@ -34,7 +33,6 @@ export function TestimonialsSection({
   title = "Loved by Developers",
   subtitle = "See what others are saying about our premium starter template",
   testimonials = [],
-  autoRotateInterval = 6000,
   showVerifiedBadge = true,
   trustedCompanies = [],
   trustedCompaniesTitle = "Trusted by teams at these companies and more",
@@ -42,29 +40,6 @@ export function TestimonialsSection({
 }: TestimonialsSectionProps) {
   // State for active testimonial
   const [activeIndex, setActiveIndex] = useState(0)
-
-  // Refs for scroll animations
-  const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
-  const controls = useAnimation()
-
-  // Automatically cycle through testimonials
-  useEffect(() => {
-    if (autoRotateInterval <= 0 || testimonials.length <= 1) return
-
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length)
-    }, autoRotateInterval)
-
-    return () => clearInterval(interval)
-  }, [testimonials.length, autoRotateInterval])
-
-  // Trigger animations when section comes into view
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible")
-    }
-  }, [isInView, controls])
 
   // Handlers for navigation
   const handlePrev = () => {
@@ -105,14 +80,14 @@ export function TestimonialsSection({
 
   return (
     <section
-      ref={sectionRef}
       id="testimonials"
       className={cn("py-16 md:py-32 relative overflow-hidden flex justify-center", className)}
     >
       <div className="container items-center px-4 md:px-6">
         <motion.div
           initial="hidden"
-          animate={controls}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
           className="text-center mb-12 space-y-4"
         >
@@ -126,7 +101,8 @@ export function TestimonialsSection({
 
         <motion.div
           initial="hidden"
-          animate={controls}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
           className="md:grid md:grid-cols-[1fr_auto] gap-8 items-center max-w-[1200px]"
         >
