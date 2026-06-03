@@ -1,8 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bionic Clinical Portal - Landing Page
+
+A premium, modern landing page for a bionics prosthetics company, featuring high-end animations, interactive clinical assessment forms, and a responsive design.
+
+## Features
+
+- **Premium UI/UX:** Clean, modern, and accessible interface tailored for clinical and patient interactions.
+- **Advanced Animations:** Utilizing `framer-motion`, `gsap`, and `lenis` for smooth, cinematic scrolling and micro-interactions.
+- **Interactive Clinical Form:** A multi-step consultation scheduling form with animated progress tracking and custom comboboxes (built with `react-aria-components`).
+- **Responsive Layout:** fully optimized for mobile, tablet, and desktop viewing.
+
+## Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) (App Router, React 19)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animations:** [Framer Motion](https://www.framer.com/motion/), [GSAP](https://gsap.com/)
+- **Smooth Scroll:** [Lenis](https://studiofreight.github.io/lenis/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **UI Components:** [Radix UI](https://www.radix-ui.com/), [React Aria Components](https://react-spectrum.adobe.com/react-aria/)
 
 ## Getting Started
 
-First, run the development server:
+First, make sure you have Node.js installed. Then, install the project dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -10,27 +38,17 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. You can start editing the page by modifying `app/page.tsx` or the sales portal in `app/contact-sales/page.tsx`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/app/`: Next.js App Router pages and layouts.
+- `src/components/`: Reusable UI components (buttons, comboboxes, animated sections).
+- `src/lib/`: Utility functions and helper classes.
+- `public/`: Static assets like images and fonts.
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is optimized for deployment on [Vercel](https://vercel.com). Simply push the repository to GitHub, connect it to Vercel, and it will automatically deploy the Next.js application.
