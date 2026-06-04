@@ -309,9 +309,9 @@ export default function ContactSalesClient() {
               className="relative z-10 w-full max-w-[340px] md:max-w-[400px] aspect-[4/5] flex items-center justify-center"
             >
               <img 
-                src="/bionic_hand_closeup_1780052263731.png" 
+                src="https://images.unsplash.com/photo-1779952747150-0fe7c299332b?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                 alt="Premium Bionic Prosthetic" 
-                className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+                className="w-full h-full object-cover rounded-2xl filter shadow-2xl"
               />
             </motion.div>
           </div>
