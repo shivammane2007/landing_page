@@ -9,13 +9,11 @@ interface FAQItem {
     a: string;
 }
 
-const ClayItem = ({ faq, cardBgColor, cardTextColor, cardSubtextColor, iconColor, activeIconBgColor, activeIconColor, shadowLightColor, shadowDarkColor }: { faq: FAQItem, cardBgColor: string, cardTextColor: string, cardSubtextColor: string, iconColor: string, activeIconBgColor: string, activeIconColor: string, shadowLightColor: string, shadowDarkColor: string }) => {
-    const [isOpen, setIsOpen] = useState(false);
-
+const ClayItem = ({ faq, isOpen, onClick, cardBgColor, cardTextColor, cardSubtextColor, iconColor, activeIconBgColor, activeIconColor, shadowLightColor, shadowDarkColor }: { faq: FAQItem, isOpen: boolean, onClick: () => void, cardBgColor: string, cardTextColor: string, cardSubtextColor: string, iconColor: string, activeIconBgColor: string, activeIconColor: string, shadowLightColor: string, shadowDarkColor: string }) => {
     return (
         <motion.div
             layout
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={onClick}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="p-6 md:p-8 rounded-[2rem] cursor-pointer transition-all duration-300"
@@ -52,6 +50,8 @@ const ClayItem = ({ faq, cardBgColor, cardTextColor, cardSubtextColor, iconColor
 };
 
 export default function FAQ() {
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
+
     const faqs = [
         { q: "How long does the clinical fitting process take?", a: "The initial fitting process typically takes 1-2 hours. Our clinicians utilize sub-millimeter 3D scanning to map your residual limb, analyze baseline muscle signals, and tailor the socket for maximum comfort." },
         { q: "Is the prosthetic waterproof or water-resistant?", a: "The Everyday Edition is IP67 water-resistant, meaning it can withstand rain and accidental splashes. The Sports Edition is fully waterproof (IP68) up to 2 meters for 30 minutes, allowing for swimming and rigorous outdoor activities." },
@@ -110,6 +110,8 @@ export default function FAQ() {
                         <ClayItem 
                             key={i} 
                             faq={faq} 
+                            isOpen={openIndex === i}
+                            onClick={() => setOpenIndex(openIndex === i ? null : i)}
                             cardBgColor={cardBgColor} 
                             cardTextColor={cardTextColor} 
                             cardSubtextColor={cardSubtextColor} 
