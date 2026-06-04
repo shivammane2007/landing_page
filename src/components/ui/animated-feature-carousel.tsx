@@ -332,8 +332,9 @@ export function FeatureCarousel({
   step2img2Class = defaultClasses.step2img2,
   step3imgClass = defaultClasses.step3img,
   step4imgClass = defaultClasses.step4img,
+  children,
   ...props
-}: FeatureCarouselProps) {
+}: FeatureCarouselProps & { children?: React.ReactNode }) {
   const { currentNumber: step, setStep } = useNumberCycler()
   const renderStepContent = () => {
     switch (step) {
@@ -366,6 +367,7 @@ export function FeatureCarousel({
                     {renderStepContent()}
                 </motion.div>
             </AnimatePresence>
+            {children}
         </FeatureCard>
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
             <StepsNav current={step} onChange={setStep} steps={steps} />

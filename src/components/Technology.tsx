@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { FeatureCarousel, type ImageSet } from "@/components/ui/animated-feature-carousel";
 
+import Globe from "@/components/ui/globe";
+
 export default function Technology() {
   const images: ImageSet = {
       alt: "Bionic Technology",
@@ -38,7 +40,11 @@ export default function Technology() {
           </motion.p>
         </div>
 
-        <FeatureCarousel image={images} />
+        <FeatureCarousel image={images}>
+          <div className="absolute right-4 md:right-10 top-4 md:top-10 hidden md:block z-30 pointer-events-none scale-[0.65] xl:scale-75 origin-top-right">
+            <Globe />
+          </div>
+        </FeatureCarousel>
         
       </div>
     </section>
