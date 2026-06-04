@@ -390,7 +390,7 @@ export default function ContactSalesClient() {
                         
                         {/* Name Input */}
                         <div className="relative">
-                          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-gray-400">
+                          <div className="absolute top-[18px] left-4 pointer-events-none text-gray-400">
                             <User size={16} />
                           </div>
                           <input
@@ -413,7 +413,7 @@ export default function ContactSalesClient() {
 
                         {/* Email Input */}
                         <div className="relative">
-                          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-gray-400">
+                          <div className="absolute top-[18px] left-4 pointer-events-none text-gray-400">
                             <Mail size={16} />
                           </div>
                           <input
@@ -436,7 +436,7 @@ export default function ContactSalesClient() {
 
                         {/* Phone Input */}
                         <div className="relative">
-                          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-gray-400">
+                          <div className="absolute top-[18px] left-4 pointer-events-none text-gray-400">
                             <Phone size={16} />
                           </div>
                           <input
@@ -459,7 +459,7 @@ export default function ContactSalesClient() {
 
                         {/* Country Input */}
                         <div className="relative">
-                          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-gray-400">
+                          <div className="absolute top-[18px] left-4 pointer-events-none text-gray-400">
                             <Globe size={16} />
                           </div>
                           <input
@@ -482,7 +482,7 @@ export default function ContactSalesClient() {
 
                         {/* Occupation Input */}
                         <div className="relative">
-                          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-gray-400">
+                          <div className="absolute top-[18px] left-4 pointer-events-none text-gray-400">
                             <Briefcase size={16} />
                           </div>
                           <input
@@ -516,7 +516,7 @@ export default function ContactSalesClient() {
                             }}
                           >
                             <ComboBox.InputGroup className="relative w-full">
-                              <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-gray-400 z-10">
+                              <div className="absolute top-[18px] left-4 pointer-events-none text-gray-400 z-10">
                                 <Building size={16} />
                               </div>
                               <ComboInput 
