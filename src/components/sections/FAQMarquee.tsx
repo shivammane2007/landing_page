@@ -3,7 +3,7 @@
 import { UserCheck, Activity, ShieldCheck, Heart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Marquee } from "@/components/ui/marquee";
-import DotPattern from './ui/dot-pattern-1';
+import DotPattern from "@/components/ui/dot-pattern-1";
 
 const marqueeData = [
   "How long does the battery last?",

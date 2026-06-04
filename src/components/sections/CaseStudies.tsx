@@ -3,8 +3,8 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
-import BorderGlow from './ui/BorderGlow';
+import AnimatedGenerateButton from "@/components/ui/animated-generate-button-shadcn-tailwind";
+import BorderGlow from "@/components/ui/BorderGlow";
 
 const CaseStudyCard = ({ title, story, tag, delay, image }: { title: string, story: string, tag: string, delay: number, image: string }) => (
   <motion.div

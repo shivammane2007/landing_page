@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Layers, Users, Heart, Monitor, LucideIcon } from "lucide-react";
-import { Counter } from "@/src/lib/utils/counter";
+import { Counter } from "@/utils/counter";
 
 interface StatItem {
     value: string;

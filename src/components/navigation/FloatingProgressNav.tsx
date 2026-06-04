@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LiquidButton } from "./ui/liquid-glass-button";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 
 const SECTIONS = [
   { id: "story", label: "Story" },

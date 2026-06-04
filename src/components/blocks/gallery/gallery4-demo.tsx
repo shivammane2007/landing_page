@@ -1,4 +1,4 @@
-import { Gallery4, Gallery4Props } from "@/components/blocks/gallery4"
+import { Gallery4, Gallery4Props } from "@/components/blocks/gallery/gallery4"
 
 const demoData: Gallery4Props = {
   title: "Projects",

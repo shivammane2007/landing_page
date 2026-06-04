@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/utils';
 import Lenis from '@studio-freight/lenis';
 import { ZoomParallax } from "@/components/ui/zoom-parallax";
 

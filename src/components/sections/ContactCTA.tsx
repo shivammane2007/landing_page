@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
+import AnimatedGenerateButton from "@/components/ui/animated-generate-button-shadcn-tailwind";
 
 export default function FinalCTA() {
   return (

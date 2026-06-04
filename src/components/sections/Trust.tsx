@@ -2,11 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { Tv } from 'lucide-react';
-import { useAnimatedCounter } from '../hooks/useAnimatedCounter';
-import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
-import BorderGlow from './ui/BorderGlow';
-import LogoLoop from './ui/LogoLoop';
-import MoviePassButton from './ui/movie-pass';
+import { useAnimatedCounter } from "@/hooks/useAnimatedCounter";
+import AnimatedGenerateButton from "@/components/ui/animated-generate-button-shadcn-tailwind";
+import BorderGlow from "@/components/ui/BorderGlow";
+import LogoLoop from "@/components/ui/LogoLoop";
+import MoviePassButton from "@/components/ui/movie-pass";
 
 const StatItem = ({ target, label, suffix = '' }: { target: number, label: string, suffix?: string }) => {
   const { ref, count } = useAnimatedCounter(target, 2000);

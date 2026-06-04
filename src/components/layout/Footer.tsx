@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowUp, Mail, Send, AtSign, Globe, Share2, Heart } from "lucide-react";
-import ButtonSocialIconDemo from "./ui/social-icon";
+import ButtonSocialIconDemo from "@/components/ui/social-icon";
 
 function handleScrollTop() {
   window.scroll({

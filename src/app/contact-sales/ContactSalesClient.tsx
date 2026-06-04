@@ -27,10 +27,10 @@ import {
   Users,
   Monitor
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/utils';
 import AnimatedGenerateButton from '@/components/ui/animated-generate-button-shadcn-tailwind';
 import { Calendar } from '@/components/ui/calendar-rac';
-import StatsClay from '@/src/components/ContentBlocks/StatsSections/tsx/StatsClay';
+import StatsClay from '@/components/blocks/stats/StatsClay';
 import { ComboBox, Input as ComboInput, ListBox } from '@/components/ui/heroui-combo-box';
 
 // Specialist Profiles
@@ -39,21 +39,21 @@ const specialists = [
     name: "Dr. Sarah Johnson",
     role: "Clinical Prosthetics Lead",
     experience: "12 Years Experience",
-    image: "/surgeon_prosthetic_1780080439095.png",
+    image: "/images/surgeon_prosthetic_1780080439095.png",
     bio: "Former Chief of Rehabilitation at Johns Hopkins, specialized in sensory feedback systems."
   },
   {
     name: "Marcus Vance",
     role: "Bionics Design Lead",
     experience: "8 Years Experience",
-    image: "/robotic_arm_lab_1780052286571.png",
+    image: "/images/robotic_arm_lab_1780052286571.png",
     bio: "Ex-NASA robotics engineer, pioneer in lightweight multi-axis mechanical joints."
   },
   {
     name: "Dr. David Chen",
     role: "Rehabilitation Director",
     experience: "15 Years Experience",
-    image: "/athlete_prosthetic_1780052307449.png",
+    image: "/images/athlete_prosthetic_1780052307449.png",
     bio: "Physical therapist expert dedicated to sports kinematics and adaptive running blades."
   }
 ];
@@ -86,25 +86,25 @@ const bionicFeatures = [
     label: "Calibration",
     heading: "AI-Powered Signal Calibration",
     sub: "Our neural model trains in real-time to match your exact muscle signal patterns. Reclaim natural movement in minutes.",
-    img: "/robotic_joints_1780052347211.png",
+    img: "/images/robotic_joints_1780052347211.png",
   },
   {
     label: "Socket Design",
     heading: "Custom Ergonomic Fabrication",
     sub: "Individually 3D-modeled and breathable sockets ensure a frictionless, all-day fit tailored to your limb anatomy.",
-    img: "/robotic_arm_lab_1780052286571.png",
+    img: "/images/robotic_arm_lab_1780052286571.png",
   },
   {
     label: "Clinical Support",
     heading: "Direct Clinical Fitting Leads",
     sub: "Receive direct, one-on-one sessions with certified prosthetists to adjust, tune, calibrate, and master your device.",
-    img: "/surgeon_prosthetic_1780080439095.png",
+    img: "/images/surgeon_prosthetic_1780080439095.png",
   },
   {
     label: "Performance",
     heading: "All-Day Active Battery Life",
     sub: "Lightweight power cells run active motorized joints and multi-grip patterns for 24+ hours on a single charge.",
-    img: "/athlete_prosthetic_1780052307449.png",
+    img: "/images/athlete_prosthetic_1780052307449.png",
   },
 ];
 

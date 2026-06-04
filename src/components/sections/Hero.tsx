@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import Shuffle from './Shuffle';
-import CircularText from './CircularText';
-import AnimatedGenerateButton from './ui/animated-generate-button-shadcn-tailwind';
+import Shuffle from "../animations/Shuffle";
+import CircularText from "../animations/CircularText";
+import AnimatedGenerateButton from "@/components/ui/animated-generate-button-shadcn-tailwind";
 
 export default function Hero() {
   return (

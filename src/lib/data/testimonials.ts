@@ -1,9 +1,4 @@
-"use client";
-
-import { TestimonialsSection } from "@/components/ui/simple-animated-testimonials";
-
-export default function Testimonials() {
-  const testimonials = [
+export const testimonials = [
     {
       id: 1,
       quote: "It gave me back my independence. I can finally cook, type, and live my life without constantly asking for help.",
@@ -59,25 +54,3 @@ export default function Testimonials() {
       avatar: "https://randomuser.me/api/portraits/men/22.jpg",
     }
   ];
-
-  const mappedTestimonials = testimonials.map((t) => ({
-    id: t.id,
-    name: t.name,
-    role: t.occupation,
-    company: t.location,
-    content: t.quote,
-    rating: t.rating,
-    avatar: t.avatar,
-  }));
-
-  return (
-    <TestimonialsSection
-      className="bg-[#f0f0ee] w-full"
-      title="Stories from people who never stopped moving."
-      subtitle="Join thousands of users who have reclaimed their mobility, independence, and confidence."
-      testimonials={mappedTestimonials}
-      trustedCompanies={["Mayo Clinic", "Cleveland Clinic", "Johns Hopkins", "Stanford Health", "Mass General", "UCLA Health"]}
-      trustedCompaniesTitle="Trusted by leading healthcare institutions"
-    />
-  );
-}

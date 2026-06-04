@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
-import PillNav from './PillNav';
+import PillNav from "../navigation/PillNav";
 
 const Logo = () => (
   <svg

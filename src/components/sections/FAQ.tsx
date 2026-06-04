@@ -49,18 +49,10 @@ const ClayItem = ({ faq, isOpen, onClick, cardBgColor, cardTextColor, cardSubtex
     );
 };
 
+import { faqs } from "@/lib/data/faq";
+
 export default function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-    const faqs = [
-        { q: "How long does the clinical fitting process take?", a: "The initial fitting process typically takes 1-2 hours. Our clinicians utilize sub-millimeter 3D scanning to map your residual limb, analyze baseline muscle signals, and tailor the socket for maximum comfort." },
-        { q: "Is the prosthetic waterproof or water-resistant?", a: "The Everyday Edition is IP67 water-resistant, meaning it can withstand rain and accidental splashes. The Sports Edition is fully waterproof (IP68) up to 2 meters for 30 minutes, allowing for swimming and rigorous outdoor activities." },
-        { q: "What is the battery life, and how long does charging take?", a: "Our smart prosthetics feature an 18-hour battery life under normal use. A full charge from 0 to 100% takes approximately 90 minutes using the included rapid magnetic charger." },
-        { q: "Is 24/7 support really available, and how do I access it?", a: "Yes, 24/7 support is available through our dedicated mobile app. You can instantly chat with technical support for firmware issues or schedule a telehealth clinical review for socket comfort adjustments." },
-        { q: "Are financing or EMI options available?", a: "Absolutely. We partner with major healthcare financing networks to offer flexible EMI plans spread across 12, 24, or 36 months. Our patient advocacy team will also assist you with filing claims to maximize your insurance benefits." },
-        { q: "What warranty and repair coverage is included?", a: "The Starter plan includes a 1-year comprehensive warranty, while Professional and Enterprise plans include 2 years. This covers all mechanical parts, motors, sensors, and software." },
-        { q: "How long does delivery take after ordering?", a: "Because each socket is custom-manufactured to your precise anatomy, final assembly and delivery typically take between 10 to 14 business days from your initial scanning appointment." }
-    ];
 
     const backgroundColor = "#fafaf8";
     const title = "Frequently asked questions.";

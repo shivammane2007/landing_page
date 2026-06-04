@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { Brain, Hand, Smartphone, Battery, Feather, RefreshCw, Activity, ShieldCheck, Bluetooth } from 'lucide-react';
-import BorderGlow from './ui/BorderGlow';
-import DotPattern from './ui/dot-pattern-1';
+import BorderGlow from "@/components/ui/BorderGlow";
+import DotPattern from "@/components/ui/dot-pattern-1";
 
 const FeatureCard = ({ icon: Icon, title, desc, delay }: { icon: any, title: string, desc: string, delay: number }) => (
   <motion.div

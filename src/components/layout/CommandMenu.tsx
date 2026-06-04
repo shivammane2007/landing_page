@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import BorderGlow from './ui/BorderGlow';
+import BorderGlow from "@/components/ui/BorderGlow";
 
 const menuItems = [
   { label: 'Story', path: '#story' },

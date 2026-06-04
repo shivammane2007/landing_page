@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { CheckCircle2, X } from 'lucide-react';
-import { useAnimatedCounter } from '../hooks/useAnimatedCounter';
-import BorderGlow from './ui/BorderGlow';
-import DotPattern from './ui/dot-pattern-1';
+import { useAnimatedCounter } from "@/hooks/useAnimatedCounter";
+import BorderGlow from "@/components/ui/BorderGlow";
+import DotPattern from "@/components/ui/dot-pattern-1";
 
 const LargeStat = ({ target, label, suffix = '', prefix = '', decimals = 0 }: { target: number, label: string, suffix?: string, prefix?: string, decimals?: number }) => {
   const { ref, count } = useAnimatedCounter(target, 2000, (val) => 

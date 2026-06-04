@@ -1,7 +1,7 @@
 import React from 'react'
-import Navbar from '@/components/Navbar'
-import ScrollProgress from '@/components/ScrollProgress'
-import CommandMenu from '@/components/CommandMenu'
+import Navbar from '@/components/layout/Navbar'
+import ScrollProgress from '@/components/layout/ScrollProgress'
+import CommandMenu from '@/components/layout/CommandMenu'
 
 export default function MainLayout({
   children,
