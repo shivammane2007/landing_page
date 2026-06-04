@@ -899,25 +899,62 @@ export default function ContactSalesClient() {
       />
 
       {/* CTA SECTION */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-gray-900 text-white rounded-[32px] p-8 sm:p-16 border border-gray-800 shadow-2xl relative overflow-hidden flex flex-col items-center text-center">
-          {/* Subtle accent light */}
-          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full bg-purple-600/15 blur-3xl pointer-events-none" />
-          
-          <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tight relative z-10 !text-white">
-            Ready to take the next step?
-          </h2>
-          <p className="!text-gray-400 text-base max-w-xl mx-auto mb-10 relative z-10">
-            Begin your bionic mobility assessment today. Select your preferred slot and our clinical engineers will do the rest.
-          </p>
-          
-          <button 
-            type="button"
-            onClick={scrollToForm}
-            className="px-8 py-4 bg-white text-gray-900 hover:bg-gray-100 rounded-full text-xs font-bold uppercase tracking-wider transition-colors shadow-lg cursor-pointer relative z-10"
-          >
-            Schedule Consultation
-          </button>
+      <section className="w-full relative py-20 overflow-hidden">
+        {/* Background dotted pattern */}
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(#d1d5db_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-40" />
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <style>{`
+            @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap');
+            .hand-drawn-font {
+              font-family: 'Kalam', cursive;
+            }
+            .clay-card {
+              border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            }
+            .clay-input {
+              border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+            }
+            .clay-btn {
+              border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
+            }
+          `}</style>
+
+          <div className="relative p-2 sm:p-4">
+            {/* Red shadow offset */}
+            <div className="absolute inset-0 bg-[#ff4d4f] clay-card translate-y-3 translate-x-2" />
+            
+            {/* Main Card */}
+            <div className="bg-[#2A2A2A] text-white p-10 sm:p-16 relative flex flex-col items-center text-center clay-card overflow-hidden border-2 border-[#2A2A2A]">
+              
+              {/* Dashed curve top left */}
+              <svg className="absolute top-0 left-0 w-32 h-32 text-gray-400 opacity-30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 50,0 C 50,25 25,50 0,50" stroke="currentColor" strokeWidth="2" strokeDasharray="6,6" />
+              </svg>
+
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 hand-drawn-font !text-white leading-tight z-10">
+                Ready to transform your<br/>workflow?
+              </h2>
+              <p className="!text-gray-200 text-base sm:text-xl max-w-2xl mx-auto mb-10 hand-drawn-font z-10">
+                Join thousands of teams already using Acme Platform to work smarter and achieve more.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 w-full max-w-lg mx-auto z-10">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email..." 
+                  className="flex-1 bg-transparent border-2 border-gray-400 text-white placeholder-gray-400 px-5 py-3 outline-none focus:border-white transition-colors clay-input hand-drawn-font text-lg"
+                />
+                <button 
+                  type="button"
+                  onClick={scrollToForm}
+                  className="px-8 py-3 bg-white text-gray-900 hover:bg-gray-100 font-bold transition-colors clay-btn hand-drawn-font text-lg shadow-sm"
+                >
+                  Start free trial
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
