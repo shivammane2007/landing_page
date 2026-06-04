@@ -57,20 +57,6 @@ const StatsClay: React.FC<StatsClayProps> = ({
             className="relative w-full min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden"
             style={{ backgroundColor: sectionBg }}
         >
-            {/* Floating accent dot */}
-            <motion.div
-                className="absolute top-10 right-10 w-2 h-2 rounded-full"
-                style={{ backgroundColor: accentColor }}
-                animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0.6, 1, 0.6],
-                }}
-                transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-            />
 
             <div className="max-w-6xl w-full">
                 {/* Header */}
