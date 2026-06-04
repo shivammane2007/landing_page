@@ -8,7 +8,7 @@ import BorderGlow from "@/components/ui/BorderGlow";
 import LogoLoop from "@/components/ui/LogoLoop";
 import MoviePassButton from "@/components/ui/movie-pass";
 
-const StatItem = ({ target, label, suffix = '' }: { target: number, label: string, suffix?: string }) => {
+const StatItem = ({ target, label, suffix = '', delay = 0 }: { target: number, label: string, suffix?: string, delay?: number }) => {
   const { ref, count } = useAnimatedCounter(target, 2000);
   
   return (
@@ -18,11 +18,12 @@ const StatItem = ({ target, label, suffix = '' }: { target: number, label: strin
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px" }}
+      transition={{ delay, duration: 0.5 }}
     >
       <BorderGlow
         backgroundColor="#ffffff"
         borderRadius={16}
-        className="p-8 flex flex-col items-center justify-center text-center border border-gray-200 h-full"
+        className="p-8 flex flex-col items-center justify-center text-center border border-gray-200 h-full will-change-transform"
       >
         <div className="text-4xl font-bold text-gray-900 mb-2">
           {count.toLocaleString()}{suffix}
@@ -101,25 +102,28 @@ export default function Trust() {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-16">
-          <StatItem target={10000} label="Lives Improved" suffix="+" />
-          <StatItem target={98} label="Customer Satisfaction" suffix="%" />
-          <StatItem target={25} label="Countries Supported" suffix="+" />
-          <StatItem target={24} label="Customer Care" suffix="/7" />
+          <StatItem target={10000} label="Lives Improved" suffix="+" delay={0} />
+          <StatItem target={98} label="Customer Satisfaction" suffix="%" delay={0.1} />
+          <StatItem target={25} label="Countries Supported" suffix="+" delay={0.2} />
+          <StatItem target={24} label="Customer Care" suffix="/7" delay={0.3} />
         </div>
 
         {/* Certification Badges */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "0px" }}
-          className="flex flex-wrap justify-center gap-4"
-        >
-          {['ISO 13485 Certified', 'CE Marked', 'FDA Cleared'].map(cert => (
-            <MoviePassButton key={cert}>
-              {cert}
-            </MoviePassButton>
+        <div className="flex flex-wrap justify-center gap-4">
+          {['ISO 13485 Certified', 'CE Marked', 'FDA Cleared'].map((cert, i) => (
+            <motion.div
+              key={cert}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "0px" }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <MoviePassButton>
+                {cert}
+              </MoviePassButton>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
 
       </div>
     </section>

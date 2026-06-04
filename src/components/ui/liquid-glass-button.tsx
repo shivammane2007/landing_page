@@ -317,7 +317,10 @@ export const MetalButton = React.forwardRef<
   const [isTouchDevice, setIsTouchDevice] = React.useState(false);
  
   React.useEffect(() => {
-    setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
+    const timer = setTimeout(() => {
+      setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
  
   const buttonText = children || "Button";

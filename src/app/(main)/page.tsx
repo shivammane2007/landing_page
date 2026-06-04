@@ -1,20 +1,22 @@
+import dynamic from 'next/dynamic';
 import Hero from '@/components/sections/Hero';
 import Trust from '@/components/sections/Trust';
 import ProductShowcase from '@/components/sections/ProductShowcase';
-import { Gallery4Demo } from '@/components/blocks/gallery/gallery4-demo';
-import Features from '@/components/sections/Features';
-import HowItWorks from '@/components/sections/HowItWorks';
-import Technology from '@/components/sections/Technology';
-import Testimonials from '@/components/sections/Testimonials';
-import Impact from '@/components/sections/Impact';
-import CaseStudies from '@/components/sections/CaseStudies';
-import Pricing from '@/components/sections/Pricing';
-import FAQMarquee from '@/components/sections/FAQMarquee';
-import FAQ from '@/components/sections/FAQ';
-import FinalCTA from '@/components/sections/ContactCTA';
-import ExploreMenu from '@/components/navigation/ExploreMenu';
-import Footer from '@/components/layout/Footer';
-import FloatingProgressNav from '@/components/navigation/FloatingProgressNav';
+
+const Gallery4Demo = dynamic(() => import('@/components/blocks/gallery/gallery4-demo').then(mod => mod.Gallery4Demo));
+const Features = dynamic(() => import('@/components/sections/Features'));
+const HowItWorks = dynamic(() => import('@/components/sections/HowItWorks'));
+const Technology = dynamic(() => import('@/components/sections/Technology'));
+const Testimonials = dynamic(() => import('@/components/sections/Testimonials'));
+const Impact = dynamic(() => import('@/components/sections/Impact'));
+const CaseStudies = dynamic(() => import('@/components/sections/CaseStudies'));
+const Pricing = dynamic(() => import('@/components/sections/Pricing'));
+const FAQMarquee = dynamic(() => import('@/components/sections/FAQMarquee'));
+const FAQ = dynamic(() => import('@/components/sections/FAQ'));
+const FinalCTA = dynamic(() => import('@/components/sections/ContactCTA'));
+const ExploreMenu = dynamic(() => import('@/components/navigation/ExploreMenu'));
+const Footer = dynamic(() => import('@/components/layout/Footer'));
+const FloatingProgressNav = dynamic(() => import('@/components/navigation/FloatingProgressNav'));
 
 export default function Home() {
   return (

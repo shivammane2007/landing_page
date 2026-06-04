@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
 
 const SECTIONS = [
@@ -21,92 +21,51 @@ const circumference = 2 * Math.PI * radius;
 
 export default function FloatingProgressNav() {
   const [activeSection, setActiveSection] = useState<string>(SECTIONS[0].id);
-  const [globalProgress, setGlobalProgress] = useState<number>(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
+
+  const { scrollYProgress, scrollY } = useScroll();
+  const strokeDashoffset = useTransform(scrollYProgress, [0, 1], [circumference, 0]);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const threshold = typeof window !== 'undefined' ? window.innerHeight * 0.4 : 400;
+    const shouldBeVisible = latest > threshold && !isFooterVisible;
+    if (shouldBeVisible !== isVisible) {
+      setIsVisible(shouldBeVisible);
+    }
+  });
 
   useEffect(() => {
-    let rafId: number;
+    // Observer for Footer visibility
+    const footer = document.querySelector("footer");
+    const footerObserver = new IntersectionObserver(
+      (entries) => {
+        setIsFooterVisible(entries[0].isIntersecting);
+      },
+      { rootMargin: "50px 0px 0px 0px" }
+    );
+    if (footer) footerObserver.observe(footer);
 
-    const calculateProgress = () => {
-      const footer = document.querySelector("footer");
-      let isFooterVisible = false;
-
-      if (footer) {
-        const rect = footer.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 50) {
-          isFooterVisible = true;
-        }
-      }
-
-      // Auto-hide when hero is visible OR footer is reached
-      if (window.scrollY > window.innerHeight * 0.4 && !isFooterVisible) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-
-      const viewportHeight = window.innerHeight;
-      const viewportCenter = viewportHeight / 2;
-      let currentActive = "";
-
-      // Find section that occupies viewport center
-      SECTIONS.forEach((section) => {
-        const el = document.getElementById(section.id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= viewportCenter && rect.bottom >= viewportCenter) {
-            currentActive = section.id;
-          }
-        }
-      });
-
-      // Fallback: section whose top most recently crossed the center (scrolled above it)
-      if (!currentActive) {
-        let closestAbove = SECTIONS[0].id;
-        let maxTop = -Infinity;
-        SECTIONS.forEach((section) => {
-          const el = document.getElementById(section.id);
-          if (el) {
-            const rect = el.getBoundingClientRect();
-            if (rect.top <= viewportCenter && rect.top > maxTop) {
-              maxTop = rect.top;
-              closestAbove = section.id;
-            }
+    // Observer for Active Sections
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
           }
         });
-        currentActive = closestAbove;
-      }
+      },
+      { rootMargin: "-50% 0px -50% 0px" }
+    );
 
-      // Calculate Global Progress — guard against division by zero
-      let p = 0;
-      const firstSection = document.getElementById(SECTIONS[0].id);
-
-      if (firstSection && footer) {
-        const startY = firstSection.offsetTop;
-        const endY = footer.offsetTop - viewportHeight;
-        const totalScrollable = endY - startY;
-
-        if (totalScrollable > 0) {
-          p = (window.scrollY - startY) / totalScrollable;
-          p = Math.max(0, Math.min(1, p));
-        }
-      }
-
-      setGlobalProgress(p);
-      setActiveSection(currentActive);
-    };
-
-    const handleScroll = () => {
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(calculateProgress);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    calculateProgress(); // Init on mount
+    SECTIONS.forEach((section) => {
+      const el = document.getElementById(section.id);
+      if (el) sectionObserver.observe(el);
+    });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (rafId) cancelAnimationFrame(rafId);
+      footerObserver.disconnect();
+      sectionObserver.disconnect();
     };
   }, []);
 
@@ -126,9 +85,6 @@ export default function FloatingProgressNav() {
   );
   const activeSectionData = SECTIONS[activeIndex > -1 ? activeIndex : 0];
 
-  // Always provide explicit numeric initial value — prevents "animate from undefined" warning
-  const strokeDashoffset = circumference - globalProgress * circumference;
-
   const scrollToNext = useCallback(() => {
     const nextIndex = activeIndex + 1 < SECTIONS.length ? activeIndex + 1 : 0;
     scrollToSection(SECTIONS[nextIndex].id);
@@ -136,7 +92,7 @@ export default function FloatingProgressNav() {
 
   return (
     <motion.div
-      initial={{ y: 50, opacity: 0, x: "-50%" }}
+      initial={false}
       animate={{ 
         y: isVisible ? 0 : 50, 
         opacity: isVisible ? 1 : 0, 
@@ -161,7 +117,6 @@ export default function FloatingProgressNav() {
                     stroke="rgba(255,255,255,0.08)"
                     strokeWidth="2"
                   />
-                  {/* Issue 2 fix: explicit strokeDashoffset initial prevents "animate from undefined" warning */}
                   <motion.circle
                     cx="10"
                     cy="10"
@@ -170,9 +125,7 @@ export default function FloatingProgressNav() {
                     stroke="#ffffff"
                     strokeWidth="2"
                     strokeDasharray={circumference}
-                    strokeDashoffset={circumference}
-                    animate={{ strokeDashoffset }}
-                    transition={{ duration: 0.1, ease: "linear" }}
+                    style={{ strokeDashoffset }}
                     strokeLinecap="round"
                   />
                 </svg>

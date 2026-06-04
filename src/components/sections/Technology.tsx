@@ -1,11 +1,12 @@
 "use client";
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FeatureCarousel, type ImageSet } from "@/components/ui/animated-feature-carousel";
 
 import Globe from "@/components/ui/globe";
 
-export default function Technology() {
+const Technology = () => {
   const images: ImageSet = {
       alt: "Bionic Technology",
       step1img1: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80",
@@ -49,4 +50,6 @@ export default function Technology() {
       </div>
     </section>
   );
-}
+};
+
+export default React.memo(Technology);

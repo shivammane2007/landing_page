@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import PillNav from "../navigation/PillNav";
 
@@ -38,47 +38,45 @@ export default function Navbar() {
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
     
-    // Background style activation
-    if (latest > 60) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
+    if (latest > 60 !== isScrolled) {
+      setIsScrolled(latest > 60);
     }
 
-    // Scroll direction detection (hide on scroll down, show on scroll up)
-    if (latest > previous && latest > 150) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
-
-    // Active section logic
-    const sections = ['#story', '#products', '#features', '#technology', '#testimonials', '#pricing'];
-    let current = '';
-    for (const id of sections) {
-      const el = document.querySelector(id);
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= 150 && rect.bottom >= 150) {
-          current = id;
-        }
-      }
+    const shouldHide = latest > previous && latest > 150;
+    if (shouldHide !== hidden) {
+      setHidden(shouldHide);
     }
     
-    if (current) {
-      setActiveHref(current);
-    } else if (latest < 100) {
+    if (latest < 100 && activeHref !== '/') {
       setActiveHref('/');
     }
   });
 
+  useEffect(() => {
+    const sections = navItems.map(item => item.href.substring(1));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveHref(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: "-150px 0px -50% 0px" }
+    );
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <motion.div 
-      variants={{
-        visible: { y: 0, opacity: 1 },
-        hidden: { y: "-120%", opacity: 0 }
-      }}
-      animate={hidden ? "hidden" : "visible"}
+      initial={false}
+      animate={{ y: hidden ? "-120%" : 0, opacity: hidden ? 0 : 1 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
       className="fixed top-4 left-0 right-0 z-[1000] w-[calc(100%-2rem)] md:w-max mx-auto pointer-events-none bg-transparent"
     >
@@ -86,7 +84,7 @@ export default function Navbar() {
         <PillNav
           logo={<Logo />}
           logoAlt="Bionic Logo"
-          items={navItems} // Reference remains stable, preventing re-renders inside PillNav
+          items={navItems}
           activeHref={activeHref}
           className="mx-auto"
           ease="power2.easeOut"

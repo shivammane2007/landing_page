@@ -69,7 +69,7 @@ export function TestimonialsSection({
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut" as any,
+        ease: "easeOut" as const,
       },
     },
   }
@@ -146,7 +146,7 @@ export function TestimonialsSection({
 
                     <Separator className="my-4" />
 
-                    <p className="flex-1 italic text-base/relaxed">"{testimonial.content}"</p>
+                    <p className="flex-1 italic text-base/relaxed">&quot;{testimonial.content}&quot;</p>
 
                     {showVerifiedBadge && (
                       <div className="mt-4 text-xs text-right text-muted-foreground">Verified Customer</div>

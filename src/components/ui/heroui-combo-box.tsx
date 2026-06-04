@@ -289,11 +289,19 @@ function ComboBoxRoot({
     });
   }, []);
 
+  // Keep a stable ref to setInputValue so the effect below never needs
+  // to list it as a dependency (avoids both the "changed size" warning
+  // and the "maximum update depth" infinite-loop).
+  const setInputValueRef = React.useRef(setInputValue);
+  React.useLayoutEffect(() => { setInputValueRef.current = setInputValue; });
+
   React.useEffect(() => {
     if (selectedKey == null) return;
     const textValue = items.get(selectedKey);
-    if (textValue) setInputValue(textValue);
-  }, [items, selectedKey, setInputValue]);
+    if (textValue) {
+      setInputValueRef.current(textValue);
+    }
+  }, [items, selectedKey]);
 
   const shouldShowItem = React.useCallback(
     (textValue: string) => {
