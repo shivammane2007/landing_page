@@ -521,7 +521,8 @@ export default function ContactSalesClient() {
                               </div>
                               <ComboInput 
                                 placeholder="Current Situation"
-                                className="!w-full !pl-12 !pr-10 !pt-6 !pb-2 !rounded-2xl !border !text-sm !text-gray-900 !bg-white !placeholder-transparent !focus:outline-none !focus:ring-4 !focus:ring-purple-600/10 !focus:border-purple-600 !transition-all !border-gray-200"
+                                readOnly={true}
+                                className="!cursor-pointer !w-full !pl-12 !pr-10 !pt-6 !pb-2 !rounded-2xl !border !text-sm !text-gray-900 !bg-white !placeholder-transparent !focus:outline-none !focus:ring-4 !focus:ring-purple-600/10 !focus:border-purple-600 !transition-all !border-gray-200"
                               />
                               <label 
                                 className="absolute left-12 top-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider select-none pointer-events-none z-10"
